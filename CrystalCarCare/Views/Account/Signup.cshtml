@@ -1,7 +1,6 @@
-﻿@using CrystalCarCare.Models
-@model LoginViewModel
+﻿@model CrystalCarCare.Models.UserRegister
 @{
-    ViewBag.Title = "Login";
+    ViewBag.Title = "Signup";
 }
 
 <style>
@@ -12,25 +11,29 @@
         padding: 0;
     }
 
-    /* Only center the login container, not the whole body */
-    .login-container {
+    .signup-container {
         display: flex;
         justify-content: center;
         align-items: center;
-        min-height: calc(100vh - 70px); /* leave space for navbar */
-        padding-top: 50px; /* adjust if navbar height differs */
+        min-height: calc(100vh - 70px); /* leaves space for navbar */
+        padding-top: 50px;
     }
 
-    .login-box {
+    .signup-box {
         background-color: #1e3a8a; /* deep blue */
         padding: 40px;
         border-radius: 12px;
         box-shadow: 0 8px 16px rgba(0,0,0,0.3);
-        width: 320px;
+        width: 350px;
         text-align: center;
     }
 
-        .login-box label {
+        .signup-box h2 {
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .signup-box label {
             display: block;
             font-weight: bold;
             color: white;
@@ -38,7 +41,7 @@
             text-align: left;
         }
 
-        .login-box input {
+        .signup-box input {
             width: 100%;
             padding: 10px;
             margin-bottom: 15px;
@@ -47,7 +50,7 @@
             outline: none;
         }
 
-        .login-box button {
+        .signup-box button {
             background-color: #2563eb;
             color: white;
             font-weight: bold;
@@ -59,22 +62,21 @@
             transition: 0.3s;
         }
 
-            .login-box button:hover {
+            .signup-box button:hover {
                 background-color: #1d4ed8;
             }
-
-    .message {
-        margin-top: 15px;
-        color: white;
-        font-weight: bold;
-    }
 </style>
 
-<div class="login-container">
-    <div class="login-box">
+<div class="signup-container">
+    <div class="signup-box">
+        <h2>Signup</h2>
         @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
+            <div>
+                @Html.LabelFor(m => m.UserName)
+                @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+            </div>
             <div>
                 @Html.LabelFor(m => m.Email)
                 @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
@@ -83,8 +85,7 @@
                 @Html.LabelFor(m => m.Password)
                 @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
             </div>
-            <button type="submit">Login</button>
+            <button type="submit">Signup</button>
         }
-        <p class="message">@ViewBag.Message</p>
     </div>
 </div>
