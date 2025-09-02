@@ -303,11 +303,16 @@ namespace CrystalCarCare.Controllers
         // POST: /Manage/LinkLogin
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult LinkLogin(string provider)
-        {
+       // public ActionResult LinkLogin(string provider)
+      //  {
             // Request a redirect to the external login provider to link a login for the current user
-            return new AccountController.ChallengeResult(provider, Url.Action("LinkLoginCallback", "Manage"), User.Identity.GetUserId());
-        }
+            // Replace this line:
+            // return new AccountController.ChallengeResult(provider, Url.Action("LinkLoginCallback", "Manage"), User.Identity.GetUserId());
+
+            // With this, assuming ChallengeResult is a nested class in AccountController and should be referenced directly (not via AccountController):
+           // return new ChallengeResult(provider, Url.Action("LinkLoginCallback", "Manage"), User.Identity.GetUserId());
+           // return new AccountController.ChallengeResult(provider, Url.Action("LinkLoginCallback", "Manage"), User.Identity.GetUserId());
+       // }
 
         //
         // GET: /Manage/LinkLoginCallback
