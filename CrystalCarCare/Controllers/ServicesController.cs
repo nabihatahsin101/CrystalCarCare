@@ -4,7 +4,7 @@ namespace CrystalCarCare.Controllers
 {
     public class ServicesController : Controller
     {
-        public ActionResult CarWash()  // Make sure the name matches the view
+        public ActionResult CarWash()
         {
             return View();
         }
@@ -15,6 +15,12 @@ namespace CrystalCarCare.Controllers
         }
 
         public ActionResult Additional()
+        {
+            return View();
+        }
+
+        // ✅ New Rent action
+        public ActionResult Rent()
         {
             return View();
         }
