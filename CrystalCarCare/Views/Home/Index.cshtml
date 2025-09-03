@@ -15,7 +15,7 @@
             --light: #f8f9fa;
             --dark: #1a252f;
             --success: #2ecc71;
-            --neutral: #e9ecef;
+            --neutral: #121212; /* updated to match navbar background */
             --spacing-xs: 0.5rem;
             --spacing-sm: 1rem;
             --spacing-md: 1.5rem;
@@ -25,6 +25,7 @@
             --transition: all 0.3s ease;
             --shadow: 0 10px 25px rgba(0,0,0,0.08);
         }
+
 
         * {
             margin: 0;
@@ -39,6 +40,15 @@
             line-height: 1.6;
             scroll-behavior: smooth;
         }
+        /* Section Titles */
+        .section-title h2 {
+            color: #FFD700; /* gold for titles */
+        }
+
+        /* Section Description / Paragraph */
+        .section-title p {
+            color: #e0e0e0; /* light gray for text */
+        }
 
         .container {
             max-width: 1200px;
@@ -48,43 +58,39 @@
 
         /* Hero */
         .hero {
-            min-height: 100vh;
+            min-height: 85vh; /* full viewport height */
             display: flex;
             justify-content: center;
             align-items: center;
             background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80') center/cover no-repeat;
-            color: #fff;
+            color: #FFD700; /* gold theme */
             text-align: center;
             padding: 0 1rem;
+            overflow: hidden;
         }
 
-            .hero h1 {
-                font-size: clamp(2rem,5vw,3.5rem);
-                margin-bottom: 1rem;
-                font-weight: 700;
-                text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
-            }
+        .hero-content {
+            width: 100%; /* full width of hero */
+            max-width: 1200px; /* optional to limit max width */
+            margin: 0 auto; /* center it horizontally */
+            padding: 0 2rem; /* optional padding so text doesn't touch edges */
+        }
 
-            .hero p {
-                font-size: clamp(1rem,2vw,1.25rem);
-                max-width: 700px;
-                margin: 0 auto 2rem;
-                text-shadow: 1px 1px 6px rgba(0,0,0,0.5);
-            }
+        .hero h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 700;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+            letter-spacing: 1px;
+        }
 
-            .hero .btn {
-                background: linear-gradient(135deg,var(--primary),var(--accent));
-                padding: 0.75rem 1.5rem;
-                border-radius: var(--border-radius);
-                color: #fff;
-                font-weight: 500;
-                transition: 0.3s;
-            }
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.25rem);
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 6px rgba(0,0,0,0.7);
+            color: #e0e0e0; /* light gray for readability */
+        }
 
-                .hero .btn:hover {
-                    transform: scale(1.05);
-                    box-shadow: var(--shadow);
-                }
 
         /* Services */
         .services {
@@ -104,7 +110,7 @@
         }
 
         .service-card {
-            background: #fff;
+            background: #1a1a1a;
             border-radius: var(--border-radius);
             overflow: hidden;
             box-shadow: var(--shadow);
@@ -136,40 +142,49 @@
             flex-direction: column;
         }
 
-            .service-content h3 {
-                margin-bottom: 0.5rem;
-                color: var(--primary);
+        .service-card h3 {
+            color: #FFD700; /* gold for service titles */
+        }
+
+        .service-card a.btn-outline {
+            border-color: #FFD700; /* gold border */
+            color: #FFD700; /* gold text */
+            background-color: transparent;
+            transition: 0.3s;
+        }
+
+            .service-card a.btn-outline:hover {
+                background-color: #FFD700; /* gold background on hover */
+                color: #111; /* dark text on hover */
+                border-color: #FFD700; /* maintain gold border */
             }
 
-            .service-content a.btn-outline:hover {
-                background: var(--accent);
-                border-color: var(--accent);
-                color: #fff;
-            }
+        .service-card p {
+            color: #e0e0e0; /* light gray for descriptions */
+        }
 
         /* Features */
         .features {
-            background: var(--neutral);
+            background: #111; /* dark background like hero */
             padding: var(--spacing-xl) 0;
         }
 
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit,minmax(250px,1fr));
-            gap: 2rem;
-        }
-
         .feature-item {
-            background: #fff;
+            background: #1a1a1a; /* dark card background */
             border-radius: var(--border-radius);
             text-align: center;
             padding: 2rem;
             transition: var(--transition);
-            box-shadow: var(--shadow);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
             display: flex;
             flex-direction: column;
             align-items: center;
+            color: #FFD700; /* gold text for headings inside cards */
         }
+
+            .feature-item p {
+                color: #e0e0e0; /* light gray for description text */
+            }
 
             .feature-item:hover {
                 transform: translateY(-5px);
@@ -178,7 +193,7 @@
 
         .feature-icon {
             font-size: 3rem;
-            color: var(--accent);
+            color: #FFD700; /* gold icons */
             margin-bottom: 1rem;
             transition: transform 0.3s;
         }
@@ -187,26 +202,34 @@
             transform: scale(1.2) rotate(10deg);
         }
 
-        /* CTA */
         .cta {
-            background: linear-gradient(135deg,var(--primary),var(--secondary));
-            color: #fff;
+            background: #111; /* dark background like navbar */
+            color: #FFD700; /* gold text */
             padding: var(--spacing-xl) 0;
             text-align: center;
         }
 
+            .cta h2 {
+                color: #FFD700; /* gold title */
+            }
+
+            .cta p {
+                color: #e0e0e0; /* light gray description */
+            }
+
             .cta .btn-light {
-                background: #fff;
-                color: var(--primary);
+                background: #FFD700; /* gold button */
+                color: #111; /* dark text on button */
                 padding: 0.75rem 1.5rem;
                 border-radius: var(--border-radius);
                 font-weight: 500;
                 transition: 0.3s;
+                border: none;
             }
 
                 .cta .btn-light:hover {
-                    background: var(--accent);
-                    color: #fff;
+                    background: #FFA500; /* darker gold on hover */
+                    color: #111;
                     transform: scale(1.05);
                 }
 
@@ -221,13 +244,14 @@
 <body>
 
     <!-- Hero Section -->
-    <section class="hero" id="hero">
+    <section class="hero">
         <div class="hero-content">
-            <h1>Premium Car Care Services</h1>
-            <p>Experience top-tier automotive care with our expert team. From detailing to maintenance, we ensure your vehicle shines.</p>
-            @Html.ActionLink("Book Now", "Booking", "User", routeValues: null, htmlAttributes: new { @class = "btn" })
+            <h1>Premium Automotive Care</h1>
+            <p>Your car deserves the best. Experience luxury car detailing and services like never before.</p>
+            <a href="/User/Booking" class="btn-cta">Book Now</a>
         </div>
     </section>
+
 
     <!-- Services Section -->
     <section class="services" id="services">
@@ -290,3 +314,4 @@
 
 </body>
 </html>
+
