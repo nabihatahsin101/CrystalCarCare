@@ -3,16 +3,151 @@
     ViewBag.Title = "Edit Profile";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+<style>
+    /* -------------------- Global -------------------- */
+    body {
+        background-color: #111;
+        color: #FFD700;
+        font-family: 'Roboto', sans-serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+    }
 
+    /* Container fills space under navbar */
+    .container {
+        flex: 1;
+        max-width: 1000px;
+        margin: 0 auto;
+        padding: 0px 0px; /* spacing from top and bottom */
+    }
+
+    /* -------------------- Cards -------------------- */
+    .card {
+        background-color: #1a1a1a;
+        border: 1px solid #444;
+        border-radius: 12px;
+        color: #FFD700;
+        box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+        transition: transform 0.3s, box-shadow 0.3s;
+        margin-bottom: 30px; /* spacing between cards */
+    }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.3);
+        }
+
+    /* -------------------- Buttons -------------------- */
+    .btn-primary {
+        background-color: #FFD700;
+        border-color: #FFD700;
+        color: #111;
+        font-weight: 600;
+        transition: 0.3s all;
+    }
+
+        .btn-primary:hover {
+            background-color: #FFA500;
+            border-color: #FFA500;
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
+        }
+
+    .btn-secondary {
+        background-color: #333;
+        border-color: #333;
+        color: #FFD700;
+        font-weight: 600;
+        transition: 0.3s all;
+    }
+
+        .btn-secondary:hover {
+            background-color: #444;
+            color: #FFD700;
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(255, 215, 0, 0.3);
+        }
+
+    /* -------------------- Form Labels & Controls -------------------- */
+    .form-label {
+        color: #FFD700;
+        font-weight: 600;
+    }
+
+    .form-control {
+        background-color: #1a1a1a;
+        color: #FFD700;
+        border: 1px solid #444;
+        border-radius: 6px;
+        padding: 8px 12px;
+        margin-bottom: 15px; /* spacing between fields */
+    }
+
+        .form-control:focus {
+            outline: none;
+            border-color: #FFD700;
+            box-shadow: 0 0 5px #FFD700;
+            background-color: #1a1a1a;
+            color: #FFD700;
+        }
+
+    .text-danger {
+        color: #ff6b6b;
+    }
+
+    /* -------------------- Typography -------------------- */
+    h2, h5 {
+        color: #FFD700;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    p {
+        color: #e0e0e0;
+        text-align: center;
+        margin-bottom: 30px;
+    }
+
+    /* -------------------- Profile Layout -------------------- */
+    .profile-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px; /* spacing between cards */
+    }
+
+    .profile-col {
+        flex: 1;
+        min-width: 300px;
+    }
+
+    .profile-img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-bottom: 15px;
+    }
+
+    /* Center buttons at bottom */
+    .btn-row {
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+        margin-top: 20px;
+    }
+</style>
 <div class="container mt-4">
-    <h2>Edit Profile</h2>
-    <p>Update your profile information.</p>
+    <h2 class="text-center mb-3">Edit Profile</h2>
+    <p class="text-center mb-4">Update your profile information.</p>
 
     @using (Html.BeginForm("Edit", "UserProfile", FormMethod.Post, new { enctype = "multipart/form-data" }))
     {
         @Html.AntiForgeryToken()
 
-        <div class="row">
+        <div class="row justify-content-center">
             <div class="col-md-4">
                 <div class="card mb-4">
                     <div class="card-body text-center">
@@ -30,7 +165,7 @@
             <div class="col-md-8">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Personal Information</h5>
+                        <h5 class="card-title mb-4">Personal Information</h5>
 
                         <div class="row mb-3">
                             <div class="col-sm-3">
@@ -93,11 +228,12 @@
                         </div>
 
                         <div class="row">
-                            <div class="col-sm-12">
+                            <div class="col-sm-12 d-flex gap-2">
                                 <button type="submit" class="btn btn-primary">Save Changes</button>
                                 <a href="@Url.Action("Index", "UserProfile")" class="btn btn-secondary">Cancel</a>
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>

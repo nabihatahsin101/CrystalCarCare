@@ -9,11 +9,69 @@
 <div class="card p-3 my-3">
     <h5>Tire Change</h5>
     <p>Replace old tires with high-quality ones.</p>
-    <button class="btn btn-secondary">Book Service</button>
+    <button class="btn btn-primary">Book Service</button>
 </div>
 
 <div class="card p-3 my-3">
     <h5>Battery Check</h5>
     <p>Check your car battery health and replace if necessary.</p>
-    <button class="btn btn-info">Book Service</button>
+    <button class="btn btn-primary">Book Service</button>
 </div>
+
+<style>
+    body {
+        background-color: #111; /* dark background */
+        color: #FFD700; /* gold text for headings */
+        font-family: 'Roboto', sans-serif;
+    }
+
+    h2 {
+        color: #FFD700;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
+
+    p {
+        color: #e0e0e0;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .card {
+        background-color: #1a1a1a; /* dark card background */
+        color: #FFD700; /* gold text for headings */
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        padding: 1.5rem;
+        margin: 1rem 0;
+    }
+
+        .card h5 {
+            color: #FFD700;
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            color: #e0e0e0; /* light gray for descriptions */
+            margin-bottom: 1rem;
+        }
+
+    .btn-primary {
+        background-color: #FFD700; /* gold button */
+        color: #111; /* dark text */
+        border: none;
+        padding: 0.5rem 1.2rem;
+        border-radius: 8px;
+        font-weight: 500;
+        transition: 0.3s;
+        cursor: pointer;
+    }
+
+        .btn-primary:hover {
+            background-color: #FFA500; /* darker gold on hover */
+            color: #111;
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+</style>

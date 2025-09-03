@@ -5,34 +5,66 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>@ViewBag.Title - Crystal Car Care</title>
 
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" />
 
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+
     <style>
-        /* Fancy Navbar Styles */
+        /* -------------------- Global -------------------- */
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #111; /* Full dark background */
+            color: #e0e0e0;
+            scroll-behavior: smooth;
+        }
+
+        a {
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+            a:hover {
+                color: #FFD700;
+            }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* -------------------- Navbar -------------------- */
         .navbar {
-            background: linear-gradient(135deg, #003087, #00a8e8);
+            background: #111;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
         }
 
         .navbar-brand {
             font-weight: 700;
             font-size: 1.8rem;
-            color: #fff !important;
-            display: flex;
-            align-items: center;
+            color: #FFD700 !important;
+            letter-spacing: 1px;
+            transition: 0.3s;
         }
 
             .navbar-brand:hover {
-                color: #ffd700 !important;
+                color: #FFA500 !important;
                 transform: scale(1.05);
-                transition: 0.3s;
             }
 
         .nav-link {
-            color: #fff !important;
+            color: #e0e0e0 !important;
             font-weight: 500;
             position: relative;
-            transition: 0.3s;
+            transition: all 0.3s;
         }
 
             .nav-link::after {
@@ -40,68 +72,187 @@
                 position: absolute;
                 width: 0;
                 height: 2px;
-                background: #ffd700;
+                background: #FFD700;
                 bottom: -5px;
                 left: 0;
                 transition: width 0.3s;
             }
 
             .nav-link:hover {
-                color: #ffd700 !important;
+                color: #FFD700 !important;
             }
 
                 .nav-link:hover::after {
                     width: 100%;
                 }
 
-        .navbar-nav .active > .nav-link,
-        .navbar-nav .nav-link.active {
-            color: #ffd700 !important;
+        .btn-cta {
+            background: #FFD700;
+            color: #111 !important;
+            font-weight: 600;
+            border-radius: 8px;
+            padding: 0.7rem 1.5rem;
+            margin-left: 1rem;
+            box-shadow: 0 6px 15px rgba(255, 215, 0,0.2);
+            transition: 0.3s all;
         }
 
-        /* Footer Styles */
+            .btn-cta:hover {
+                background: #FFA500;
+                color: #111 !important;
+                transform: scale(1.05);
+                box-shadow: 0 10px 25px rgba(255, 215, 0,0.4);
+            }
+
+        /* -------------------- Hero Section -------------------- */
+        .hero {
+            background: linear-gradient(135deg, #111, #1a1a1a);
+            background-image: url('https://images.unsplash.com/photo-1581091012184-3c0b71d607f7?auto=format&fit=crop&w=1950&q=80');
+            background-size: cover;
+            background-position: center;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+            color: #FFD700;
+        }
+
+            .hero::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(0,0,0,0.6); /* dark overlay */
+            }
+
+        .hero-content {
+            position: relative;
+            text-align: center;
+            max-width: 700px;
+            z-index: 2;
+        }
+
+            .hero-content h1 {
+                font-size: 3rem;
+                font-weight: 700;
+                margin-bottom: 1rem;
+            }
+
+            .hero-content p {
+                font-size: 1.2rem;
+                margin-bottom: 2rem;
+                color: #fff;
+            }
+
+            .hero-content .btn-cta {
+                font-size: 1.1rem;
+                padding: 0.8rem 2rem;
+            }
+
+        /* -------------------- Cards -------------------- */
+        .card-glass {
+            background: rgba(0,0,0,0.6); /* fully dark card */
+            backdrop-filter: blur(5px);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            padding: 2rem;
+            color: #FFD700;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+            .card-glass:hover {
+                transform: translateY(-8px);
+                box-shadow: 0 20px 40px rgba(255, 215, 0, 0.3);
+            }
+
+        /* -------------------- Forms -------------------- */
+        .form-control, .form-select {
+            border-radius: 8px;
+            border: 1px solid #444;
+            background: #111;
+            color: #FFD700;
+            transition: all 0.3s ease;
+        }
+
+            .form-control:focus, .form-select:focus {
+                border-color: #FFD700;
+                box-shadow: 0 0 10px rgba(255, 215, 0,0.3);
+                outline: none;
+                background: #111;
+            }
+
+        /* -------------------- Footer -------------------- */
         footer {
-            background: linear-gradient(135deg, #003087, #00205b);
+            background: linear-gradient(135deg, #111, #1a1a1a);
             color: #fff;
             padding: 3rem 0;
+            border-top: 5px solid #FFD700;
         }
 
             footer h5 {
+                font-size: 1.2rem;
                 margin-bottom: 1rem;
-                font-weight: 700;
+                color: #FFD700;
             }
 
-            footer a {
-                color: #fff;
-                text-decoration: none;
+            footer ul li a {
+                color: #e0e0e0;
+                font-size: 0.95rem;
                 transition: 0.3s;
             }
 
-                footer a:hover {
-                    color: #00a8e8;
+                footer ul li a:hover {
+                    color: #FFD700;
                 }
 
         .footer-social a {
-            display: inline-block;
-            margin-right: 0.8rem;
-            font-size: 1.3rem;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 38px;
+            height: 38px;
             background: rgba(255,255,255,0.1);
-            padding: 0.5rem;
             border-radius: 50%;
-            transition: 0.3s;
+            margin-right: 0.5rem;
+            transition: all 0.3s;
         }
 
             .footer-social a:hover {
-                background: #00a8e8;
-                color: #fff;
+                background: #FFD700;
+                color: #111;
                 transform: scale(1.2);
             }
+
+        /* -------------------- Responsive -------------------- */
+        @@media (max-width:768px) {
+            .navbar-nav {
+                text-align: center;
+            }
+
+            .btn-cta {
+                margin: 0.5rem 0 0 0;
+            }
+
+            .hero-content h1 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 1rem;
+            }
+        }
     </style>
+
 
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
+    <!-- Navbar -->
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
@@ -113,32 +264,52 @@
             </button>
 
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav flex-grow-1">
-<<<<<<< HEAD
-                    <li class="nav-item">@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li class="nav-item">@Html.ActionLink("Car Wash", "CarWash", "Services", new { area = "" }, new { @class = "nav-link", @aria_label = "Car Wash Service" })</li>
-                    <li class="nav-item">@Html.ActionLink("Mechanic Services", "Mechanic", "Services", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li class="nav-item">@Html.ActionLink("Additional Services", "Additional", "Services", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li class="nav-item">@Html.ActionLink("Rent", "Rent", "Services", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li class="nav-item">@Html.ActionLink("Booking Status", "BookingStatus", "User", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li class="nav-item">@Html.ActionLink("Profile", "Profile", "User", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li class="nav-item">@Html.ActionLink("Book Now", "Booking", "User", routeValues: null, htmlAttributes: new { @class = "nav-link", @aria_label = "Book Now" })</li>
-=======
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Car Wash", "CarWash", "Services", new { area = "" }, new { @class = "nav-link", @aria_label = "Car Wash Service" })</li>
-                    <li>@Html.ActionLink("Mechanic Services", "Mechanic", "Services", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Additional Services", "Additional", "Services", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Car Rent", "Index", "CarRent", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Booking Status", "BookingStatus", "User", new { area = "" }, new { @class = "nav-link" })</li>
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Book Now", "Booking", "User", null, new { @class = "nav-link" })
+                    </li>
+                    <li>@Html.ActionLink("Rent", "Index", "CarRent", null, new { @class = "nav-link" })</li>
+
                     <li>@Html.ActionLink("Profile", "Index", "UserProfile", new { area = "" }, new { @class = "nav-link" })</li>
 
-                    <li>@Html.ActionLink("Book Now", "Booking", "User", routeValues: null, htmlAttributes: new { @class = "nav-link", @aria_label = "Book Now" })</li>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            @Html.ActionLink("Booking Status", "BookingStatus", "User", null, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Profile", "Profile", "User", null, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Log Out", "LogOff", "Account", null, new { @class = "nav-link" })
+                        </li>
+                    }
+                    else
+                    {
+                        <li class="nav-item">
+                            @Html.ActionLink("Register", "Register", "Account", null, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Log In", "Login", "Account", null, new { @class = "nav-link" })
+                        </li>
 
->>>>>>> f5c7d43c812e6c25dd4d7b4e28bf563656d3b224
+
+
+                    }
+
+
+
+
                 </ul>
 
                 <!-- Login / Register Partial -->
-                @Html.Partial("_LoginPartial")
+
             </div>
         </div>
     </nav>
