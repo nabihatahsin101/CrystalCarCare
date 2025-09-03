@@ -1,0 +1,88 @@
+﻿@model IEnumerable<CrystalCarCare.Models.Car>
+
+@{
+    ViewBag.Title = "Car Rental - CrystalCarCare";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .card {
+            transition: transform 0.2s;
+            border: none;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+            .card:hover {
+                transform: translateY(-5px);
+            }
+
+        .card-img-top {
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+        }
+
+            .btn-primary:hover {
+                background-color: #0056b3;
+                border-color: #0056b3;
+            }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4 text-center">Car Rental Options</h1>
+
+        <!-- Search Form -->
+        <form action="@Url.Action("Index")" method="get" class="mb-4">
+            <div class="input-group">
+                <input type="text" name="searchString" class="form-control" placeholder="Search by Make or Model" value="@ViewBag.SearchString" />
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </form>
+
+        <!-- Sort Links -->
+        <div class="mb-3 text-center">
+            Sort by:
+            <a href="@Url.Action("Index", new { sortOrder = ViewBag.PriceSortParm, searchString = ViewBag.SearchString })" class="text-primary">Price</a> |
+            <a href="@Url.Action("Index", new { sortOrder = ViewBag.YearSortParm, searchString = ViewBag.SearchString })" class="text-primary">Year</a>
+        </div>
+
+        <!-- Car List -->
+        <div class="row">
+            @foreach (var car in Model)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="/Content/img/@(car.Make.ToLower().Replace(" ", "_") + "_" + car.Model.ToLower().Replace(" ", "_") + ".jpg")" class="card-img-top" alt="@car.Make @car.Model">
+                        <div class="card-body">
+                            <h5 class="card-title">@car.Make @car.Model (@car.Year)</h5>
+                            <p class="card-text">Price per day: <strong>$@car.RentalPricePerDay</strong></p>
+                            <p class="card-text">Available: <span class="@(car.IsAvailable ? "text-success" : "text-danger")">@(car.IsAvailable ? "Yes" : "No")</span></p>
+                            @if (car.IsAvailable)
+                            {
+                                <a href="@Url.Action("Rent", "CarRent", new { id = car.Id })" class="btn btn-primary w-100">Rent Now</a>
+                            }
+                            else
+                            {
+                                <button class="btn btn-secondary w-100" disabled>Rent Now</button>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
