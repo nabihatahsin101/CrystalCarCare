@@ -1,4 +1,6 @@
-﻿@{
+﻿
+
+@{
     ViewBag.Title = "Booking";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -79,40 +81,85 @@
 </div>
 
 <style>
+
+    body {
+        background-color: #111; /* dark background like hero */
+        color: #FFD700; /* optional: text color for headings */
+    }
+
+    .container {
+        padding-top:0 px;
+        padding-bottom:0 px;
+    }
+
     .card {
-        border: none;
-        border-radius: 10px;
-        overflow: hidden;
+        background-color: #1a1a1a; /* slightly lighter dark for card */
+        color: #fff; /* form text color */
+        margin-bottom: 350px;
     }
 
     .card-header {
-        border-radius: 10px 10px 0 0 !important;
+        background-color: #1a1a1a !important; /* black background */
+        color: #FFD700 !important; /* gold text */
+        border-bottom: 2px solid #FFD700; /* optional gold underline */
     }
 
-    .form-control:focus, .form-select:focus {
-        border-color: #003087;
-        box-shadow: 0 0 0 0.25rem rgba(0, 48, 135, 0.25);
+        .card-header h2 {
+            color: #FFD700; /* gold text */
+            font-weight: 700;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.7); /* optional: subtle shadow for depth */
+        }
+
+
+    .form-control, .form-select, textarea {
+        background-color: #2a2a2a; /* dark input fields */
+        color: #fff;
+        border: 1px solid #444; /* subtle border */
     }
+
+        .form-control:focus, .form-select:focus, textarea:focus {
+            border-color: #FFD700;
+            box-shadow: 0 0 0 0.25rem rgba(255, 215, 0, 0.25);
+        }
 
     .btn-primary {
-        background-color: #003087;
-        border-color: #003087;
+        background-color: #FFD700;
+        color: #111;
+        border: none;
     }
 
         .btn-primary:hover {
-            background-color: #00205b;
-            border-color: #00205b;
+            background-color: #FFA500; /* darker gold on hover */
+            color: #111;
+        }
+
+    .btn-outline-secondary {
+        border-color: #FFD700;
+        color: #FFD700;
+    }
+
+        .btn-outline-secondary:hover {
+            background-color: #FFD700;
+            color: #111;
         }
 </style>
 
 @section Scripts {
     <script>
-        // Set minimum date to today
-        document.getElementById('date').min = new Date().toISOString().split('T')[0];
+    document.getElementById('date').min = new Date().toISOString().split('T')[0];
 
-        // Reset form function
-        function resetForm() {
-            document.getElementById('bookingForm').reset();
+    function resetForm() {
+        document.getElementById('bookingForm').reset();
+    }
+
+    // Check if user is logged in
+    document.getElementById('bookingForm').addEventListener('submit', function(e) {
+        var isAuthenticated = '@Request.IsAuthenticated'.toLowerCase() === 'true';
+        if (!isAuthenticated) {
+            e.preventDefault(); // prevent form submission
+            alert('Please log in first to submit a booking.');
+            window.location.href = '@Url.Action("Login", "Account")'; // redirect to login
         }
+    });
     </script>
 }
