@@ -8,14 +8,105 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" />
 
+    <style>
+        /* Fancy Navbar Styles */
+        .navbar {
+            background: linear-gradient(135deg, #003087, #00a8e8);
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: #fff !important;
+            display: flex;
+            align-items: center;
+        }
+
+            .navbar-brand:hover {
+                color: #ffd700 !important;
+                transform: scale(1.05);
+                transition: 0.3s;
+            }
+
+        .nav-link {
+            color: #fff !important;
+            font-weight: 500;
+            position: relative;
+            transition: 0.3s;
+        }
+
+            .nav-link::after {
+                content: '';
+                position: absolute;
+                width: 0;
+                height: 2px;
+                background: #ffd700;
+                bottom: -5px;
+                left: 0;
+                transition: width 0.3s;
+            }
+
+            .nav-link:hover {
+                color: #ffd700 !important;
+            }
+
+                .nav-link:hover::after {
+                    width: 100%;
+                }
+
+        .navbar-nav .active > .nav-link,
+        .navbar-nav .nav-link.active {
+            color: #ffd700 !important;
+        }
+
+        /* Footer Styles */
+        footer {
+            background: linear-gradient(135deg, #003087, #00205b);
+            color: #fff;
+            padding: 3rem 0;
+        }
+
+            footer h5 {
+                margin-bottom: 1rem;
+                font-weight: 700;
+            }
+
+            footer a {
+                color: #fff;
+                text-decoration: none;
+                transition: 0.3s;
+            }
+
+                footer a:hover {
+                    color: #00a8e8;
+                }
+
+        .footer-social a {
+            display: inline-block;
+            margin-right: 0.8rem;
+            font-size: 1.3rem;
+            background: rgba(255,255,255,0.1);
+            padding: 0.5rem;
+            border-radius: 50%;
+            transition: 0.3s;
+        }
+
+            .footer-social a:hover {
+                background: #00a8e8;
+                color: #fff;
+                transform: scale(1.2);
+            }
+    </style>
+
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
             @Html.ActionLink("Crystal Car Care", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                     aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -23,15 +114,14 @@
 
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav flex-grow-1">
-                    <li>@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Car Wash", "CarWash", "Services", new { area = "" }, new { @class = "nav-link", @aria_label = "Car Wash Service" })</li>
-                    <li>@Html.ActionLink("Mechanic Services", "Mechanic", "Services", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Additional Services", "Additional", "Services", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Rent", "Rent", "Services", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Booking Status", "BookingStatus", "User", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Profile", "Profile", "User", new { area = "" }, new { @class = "nav-link" })</li>
-                    <li>@Html.ActionLink("Book Now", "Booking", "User", routeValues: null, htmlAttributes: new { @class = "nav-link", @aria_label = "Book Now" })</li>
-
+                    <li class="nav-item">@Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Car Wash", "CarWash", "Services", new { area = "" }, new { @class = "nav-link", @aria_label = "Car Wash Service" })</li>
+                    <li class="nav-item">@Html.ActionLink("Mechanic Services", "Mechanic", "Services", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Additional Services", "Additional", "Services", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Rent", "Rent", "Services", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Booking Status", "BookingStatus", "User", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Profile", "Profile", "User", new { area = "" }, new { @class = "nav-link" })</li>
+                    <li class="nav-item">@Html.ActionLink("Book Now", "Booking", "User", routeValues: null, htmlAttributes: new { @class = "nav-link", @aria_label = "Book Now" })</li>
                 </ul>
 
                 <!-- Login / Register Partial -->
@@ -45,6 +135,50 @@
         @RenderBody()
     </div>
 
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 mb-3">
+                    <h5>Crystal Car Care</h5>
+                    <p>Delivering premium automotive services with unmatched attention to detail.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <h5>Services</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="/Services/CarWash">Car Wash</a></li>
+                        <li><a href="/Services/Mechanic">Mechanic Services</a></li>
+                        <li><a href="/Services/Additional">Additional Services</a></li>
+                        <li><a href="/Services/Rent">Rent</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="/User/BookingStatus">Booking Status</a></li>
+                        <li><a href="/User/Profile">Profile</a></li>
+                        <li><a href="/Account/Register">Register</a></li>
+                        <li><a href="/Account/Login">Log In</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <h5>Contact Us</h5>
+                    <ul class="list-unstyled">
+                        <li>123 Auto Care Lane</li>
+                        <li>City, State 12345</li>
+                        <li>Phone: (555) 123-4567</li>
+                        <li>Email: info@crystalcarcare.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="text-center mt-3">&copy; 2025 Crystal Car Care. All rights reserved.</div>
+        </div>
+    </footer>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js"></script>
