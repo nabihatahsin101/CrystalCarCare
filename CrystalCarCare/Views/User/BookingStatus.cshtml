@@ -6,6 +6,15 @@
 <h2>Booking Status</h2>
 <p>Check the status of your car wash or mechanic service bookings.</p>
 
+@if (TempData["NewBooking"] != null)
+{
+    var newBooking = (CrystalCarCare.Controllers.BookingModel)TempData["NewBooking"];
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Booking Confirmed!</strong> Your booking for @newBooking.Service on @newBooking.Date has been received. Booking ID: @newBooking.Id
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
 <table class="table table-striped mt-3">
     <thead>
         <tr>
@@ -16,17 +25,34 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>001</td>
-            <td>Premium Wash</td>
-            <td>2025-09-02</td>
-            <td>Completed</td>
-        </tr>
-        <tr>
-            <td>002</td>
-            <td>Oil Change</td>
-            <td>2025-09-03</td>
-            <td>Pending</td>
-        </tr>
+        @if (ViewBag.Bookings != null)
+        {
+            foreach (var booking in ViewBag.Bookings)
+            {
+                <tr>
+                    <td>@booking.Id</td>
+                    <td>@booking.Service</td>
+                    <td>@booking.Date</td>
+                    <td>
+                        @if (booking.Status == "Confirmed")
+                        {
+                            <span class="badge bg-success">@booking.Status</span>
+                        }
+                        else if (booking.Status == "Pending")
+                        {
+                            <span class="badge bg-warning text-dark">@booking.Status</span>
+                        }
+                        else if (booking.Status == "Completed")
+                        {
+                            <span class="badge bg-info">@booking.Status</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-secondary">@booking.Status</span>
+                        }
+                    </td>
+                </tr>
+            }
+        }
     </tbody>
 </table>
