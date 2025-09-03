@@ -1,0 +1,32 @@
+﻿@model CrystalCarCare.Models.Booking
+@{
+    ViewBag.Title = "Book Now";
+}
+<h2>Book Service</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div>
+        <label>Service Name</label>
+        @Html.TextBoxFor(m => m.ServiceName, new { @readonly = "readonly" })
+    </div>
+
+    <div>
+        <label>Price</label>
+        @Html.TextBoxFor(m => m.Price, new { @readonly = "readonly" })
+    </div>
+
+    <div>
+        <label>Your Name</label>
+        @Html.TextBoxFor(m => m.Name)
+    </div>
+
+    <div>
+        <label>Phone Number</label>
+        @Html.TextBoxFor(m => m.Phone)
+    </div>
+
+    <button type="submit">Confirm Booking</button>
+}
