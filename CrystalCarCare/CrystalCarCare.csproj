@@ -169,11 +169,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+<<<<<<< HEAD
     <Compile Include="Controllers\BookingsController.cs" />
+=======
+    <Compile Include="Controllers\CarRentController.cs" />
+>>>>>>> d0fe034d9377788bad9c686212d3defff91d1215
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ServicesController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UserProfileController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -183,10 +188,15 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+<<<<<<< HEAD
     <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\BookingDbContext.cs" />
+=======
+    <Compile Include="Models\Car.cs" />
+>>>>>>> d0fe034d9377788bad9c686212d3defff91d1215
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ProfileModel.cs" />
     <Compile Include="Models\UserDbContext.cs" />
     <Compile Include="Models\UserRegister.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -209,6 +219,11 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\img\default-avatar.jpg" />
+    <Content Include="Content\img\tesla_model_3.jpg" />
+    <Content Include="Content\img\ford_mustang.jpg" />
+    <Content Include="Content\img\toyota_camry.jpg" />
+    <Content Include="Content\img\honda_civic.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -269,12 +284,19 @@
     <Content Include="Views\User\Profile.cshtml" />
     <Content Include="Views\Account\Signup.cshtml" />
     <Content Include="Views\User\Booking.cshtml" />
+<<<<<<< HEAD
     <Content Include="Views\Bookings\Create.cshtml" />
     <Content Include="Views\Bookings\Delete.cshtml" />
     <Content Include="Views\Bookings\Details.cshtml" />
     <Content Include="Views\Bookings\Edit.cshtml" />
     <Content Include="Views\Bookings\Index.cshtml" />
     <Content Include="Views\Bookings\Success.cshtml" />
+=======
+    <Content Include="Views\CarRent\Index.cshtml" />
+    <Content Include="Views\UserProfile\Index.cshtml" />
+    <Content Include="Views\UserProfile\Edit.cshtml" />
+    <Content Include="Views\CarRent\Rent.cshtml" />
+>>>>>>> d0fe034d9377788bad9c686212d3defff91d1215
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
