@@ -1,33 +1,346 @@
-﻿@{
-    ViewBag.Title = "Home Page";
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crystal Car Care - Premium Automotive Services</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <style>
+:root {
+    --primary: #003087;
+    --secondary: #00205b;
+    --accent: #00a8e8;
+    --light: #f8f9fa;
+    --dark: #1a252f;
+    --success: #2ecc71;
+    --neutral: #e9ecef;
+    --spacing-xs: 0.5rem;
+    --spacing-sm: 1rem;
+    --spacing-md: 1.5rem;
+    --spacing-lg: 2rem;
+    --spacing-xl: 3rem;
+    --border-radius: 12px;
+    --transition: all 0.3s ease;
+    --shadow: 0 10px 25px rgba(0,0,0,0.08);
 }
 
-<main>
-    <section class="row" aria-labelledby="aspnetTitle">
-        <h1 id="title">ASP.NET</h1>
-        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-        <p><a href="https://asp.net" class="btn btn-primary btn-md">Learn more &raquo;</a></p>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+    font-family: 'Roboto', sans-serif;
+    background: var(--neutral);
+    color: var(--dark);
+    line-height: 1.6;
+    scroll-behavior: smooth;
+}
+
+.container { max-width: 1200px; margin: 0 auto; padding: 0 var(--spacing-md); }
+ /* Header */
+    header {
+        position: fixed;
+        width: 100%;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(10px);
+        box-shadow: 0 6px 25px rgba(0,0,0,0.1);
+        z-index: 1000;
+    }
+    .navbar {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem var(--spacing-md);
+    }
+    .logo {
+        font-size: 1.85rem;
+        font-weight: 700;
+        color: var(--primary);
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+    }
+    .logo i {
+        margin-right: 0.6rem;
+        color: var(--accent);
+        transition: transform 0.3s ease, color 0.3s ease;
+    }
+    .logo:hover i {
+        transform: rotate(25deg) scale(1.1);
+        color: var(--primary);
+    }
+    .nav-menu {
+        display: flex;
+        list-style: none;
+        gap: 2rem;
+    }
+    .nav-menu li a {
+        text-decoration: none;
+        font-weight: 500;
+        color: var(--dark);
+        position: relative;
+        transition: all 0.3s ease;
+    }
+    .nav-menu li a::after {
+        content: '';
+        display: block;
+        height: 2px;
+        background: var(--accent);
+        width: 0;
+        position: absolute;
+        bottom: -4px;
+        left: 0;
+        transition: width 0.3s ease;
+    }
+    .nav-menu li a:hover {
+        color: var(--accent);
+    }
+    .nav-menu li a:hover::after {
+        width: 100%;
+    }
+    .mobile-menu-btn {
+        display: none;
+        font-size: 1.5rem;
+        cursor: pointer;
+        color: var(--dark);
+    }
+
+    /* Footer */
+    footer {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: #fff;
+        padding: var(--spacing-xl) 0;
+    }
+    footer h3 {
+        margin-bottom: 1rem;
+        font-size: 1.25rem;
+    }
+    footer ul {
+        list-style: none;
+    }
+    footer ul li {
+        margin-bottom: 0.5rem;
+    }
+    footer a {
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.3s ease, transform 0.3s ease;
+    }
+    footer a:hover {
+        color: var(--accent);
+        transform: translateX(5px);
+    }
+    .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+    }
+    .social-icons {
+        margin-top: 1rem;
+    }
+    .social-icons a {
+        display: inline-block;
+        margin-right: 1rem;
+        font-size: 1.4rem;
+        padding: 0.5rem;
+        border-radius: 50%;
+        background: rgba(255,255,255,0.1);
+        transition: transform 0.3s, background 0.3s;
+    }
+    .social-icons a:hover {
+        background: var(--accent);
+        transform: scale(1.2);
+        color: #fff;
+    }
+    .copyright {
+        text-align: center;
+        margin-top: 2rem;
+        font-size: 0.95rem;
+        color: #eee;
+    }
+
+    /* Responsive */
+    @@media(max-width:768px){
+        .nav-menu {
+            display:none;
+            flex-direction:column;
+            position:absolute;
+            top:80px;
+            left:0;
+            width:100%;
+            background:#fff;
+            padding:1rem;
+            gap: 1rem;
+        }
+        .nav-menu.active { display:flex; }
+        .mobile-menu-btn { display:block; }
+    }
+
+
+/* Hero */
+.hero {
+    min-height: 100vh;
+    display: flex; justify-content: center; align-items: center;
+    background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80') center/cover no-repeat;
+    color: #fff; text-align: center; padding: 0 1rem;
+}
+.hero h1 { font-size: clamp(2rem,5vw,3.5rem); margin-bottom: 1rem; font-weight: 700; text-shadow: 2px 2px 8px rgba(0,0,0,0.5); }
+.hero p { font-size: clamp(1rem,2vw,1.25rem); max-width: 700px; margin: 0 auto 2rem; text-shadow: 1px 1px 6px rgba(0,0,0,0.5); }
+.hero .btn { background: linear-gradient(135deg,var(--primary),var(--accent)); padding: 0.75rem 1.5rem; border-radius: var(--border-radius); color: #fff; font-weight: 500; transition: 0.3s; }
+.hero .btn:hover { transform: scale(1.05); box-shadow: var(--shadow); }
+
+/* Services */
+.services { padding: var(--spacing-xl) 0; }
+.section-title h2 { font-size: clamp(1.75rem,4vw,2.5rem); margin-bottom: 1rem; font-weight: 700; }
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap: 2rem; }
+.service-card { background: #fff; border-radius: var(--border-radius); overflow: hidden; box-shadow: var(--shadow); transition: var(--transition); display: flex; flex-direction: column; }
+.service-card:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0,0,0,0.15); }
+.service-img { width: 100%; height: 220px; object-fit: cover; transition: transform 0.5s ease; }
+.service-card:hover .service-img { transform: scale(1.05); }
+.service-content { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
+.service-content h3 { margin-bottom: 0.5rem; color: var(--primary); }
+.service-content a.btn-outline:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+/* Features */
+.features { background: var(--neutral); padding: var(--spacing-xl) 0; }
+.features-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap: 2rem; }
+.feature-item { background: #fff; border-radius: var(--border-radius); text-align: center; padding: 2rem; transition: var(--transition); box-shadow: var(--shadow); display: flex; flex-direction: column; align-items: center; }
+.feature-item:hover { transform: translateY(-5px); box-shadow: 0 12px 30px rgba(0,0,0,0.15); }
+.feature-icon { font-size: 3rem; color: var(--accent); margin-bottom: 1rem; transition: transform 0.3s; }
+.feature-item:hover .feature-icon { transform: scale(1.2) rotate(10deg); }
+
+/* CTA */
+.cta { background: linear-gradient(135deg,var(--primary),var(--secondary)); color: #fff; padding: var(--spacing-xl) 0; text-align: center; }
+.cta .btn-light { background: #fff; color: var(--primary); padding: 0.75rem 1.5rem; border-radius: var(--border-radius); font-weight: 500; transition: 0.3s; }
+.cta .btn-light:hover { background: var(--accent); color: #fff; transform: scale(1.05); }
+
+
+/* Responsive */
+@@media(max-width:768px){ .nav-menu{ display:none; flex-direction:column; position:absolute; top:80px; left:0; width:100%; background:#fff; padding:1rem; } .nav-menu.active{ display:flex; } .mobile-menu-btn{ display:block; } .services-grid, .features-grid{ grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    
+    <!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <h1>Premium Car Care Services</h1>
+            <p>Experience top-tier automotive care with our expert team. From detailing to maintenance, we ensure your vehicle shines.</p>
+            <a> <li>@Html.ActionLink("Book Now", "Booking", "User", routeValues: null, htmlAttributes: new { @class = "nav-link", @aria_label = "Book Now" })</li></a>
+        </div>
     </section>
 
-    <div class="row">
-        <section class="col-md-4" aria-labelledby="gettingStartedTitle">
-            <h2 id="gettingStartedTitle">Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="librariesTitle">
-            <h2 id="librariesTitle">Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </section>
-        <section class="col-md-4" aria-labelledby="hostingTitle">
-            <h2 id="hostingTitle">Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-outline-dark" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </section>
-    </div>
-</main>
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+                <p>Comprehensive automotive services to keep your vehicle in pristine condition.</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1520340356584-f9917d1eea6f?q=80&w=1331&auto=format&fit=crop" alt="Car Wash" class="service-img">
+                    <div class="service-content">
+                        <h3>Car Wash</h3>
+                        <p>Professional exterior and interior cleaning that leaves your vehicle sparkling clean.</p>
+                        <a href="/services/carwash" class="btn btn-outline">Learn More</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1618783129985-dd97dbe4ad99?q=80&w=687&auto=format&fit=crop" alt="Mechanic Services" class="service-img">
+                    <div class="service-content">
+                        <h3>Mechanic Services</h3>
+                        <p>Expert maintenance and repairs by certified technicians using premium parts.</p>
+                        <a href="/services/mechanic" class="btn btn-outline">Learn More</a>
+                    </div>
+                </div>
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1471289549423-04adaecfa1f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Detailing Services" class="service-img">
+                    <div class="service-content">
+                        <h3>Detailing Services</h3>
+                        <p>Premium detailing and paint protection to enhance your vehicle's appearance.</p>
+                        <a href="/services/additional" class="btn btn-outline">Learn More</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <div class="container">
+            <div class="section-title">
+                <h2>Why Choose Us</h2>
+                <p>Discover what sets Crystal Car Care apart as the premier choice for automotive enthusiasts.</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-item"><i class="fas fa-clock feature-icon"></i><h3>Quick Service</h3><p>Efficient, high-quality service that respects your time.</p></div>
+                <div class="feature-item"><i class="fas fa-star feature-icon"></i><h3>Quality Guarantee</h3><p>Every service comes with our commitment to satisfaction.</p></div>
+                <div class="feature-item"><i class="fas fa-tools feature-icon"></i><h3>Expert Technicians</h3><p>Certified professionals with extensive industry experience.</p></div>
+                <div class="feature-item"><i class="fas fa-dollar-sign feature-icon"></i><h3>Competitive Pricing</h3><p>Premium services at prices that offer exceptional value.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta" id="cta">
+        <h2>Elevate Your Vehicle's Care Today</h2>
+        <p>Schedule your appointment with Crystal Car Care and experience unparalleled automotive services.</p>
+        <a href="/booking" class="btn-light">Schedule Appointment</a>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <h3>Crystal Car Care</h3>
+                    <p>Delivering premium automotive services with unmatched attention to detail.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="/services/carwash">Car Wash</a></li>
+                        <li><a href="/services/mechanic">Mechanic Services</a></li>
+                        <li><a href="/services/additional">Detailing Services</a></li>
+                        <li><a href="/services/rent">Rent</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="/booking-status">Booking Status</a></li>
+                        <li><a href="/profile">Profile</a></li>
+                        <li><a href="/register">Register</a></li>
+                        <li><a href="/login">Log In</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li>123 Auto Care Lane</li>
+                        <li>City, State 12345</li>
+                        <li>Phone: (555) 123-4567</li>
+                        <li>Email: info@crystalcarcare.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div style="text-align:center; margin-top:2rem;">&copy; 2025 Crystal Car Care. All rights reserved.</div>
+        </div>
+    </footer>
+    <script>
+function toggleMenu() {
+    const navMenu = document.getElementById('navMenu');
+    const menuBtn = document.querySelector('.mobile-menu-btn i');
+    navMenu.classList.toggle('active');
+    menuBtn.className = navMenu.classList.contains('active') ? 'fas fa-times' : 'fas fa-bars';
+}
+</script>
+</body>
+</html>
