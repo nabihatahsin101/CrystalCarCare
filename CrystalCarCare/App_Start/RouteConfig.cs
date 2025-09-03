@@ -15,10 +15,10 @@ namespace CrystalCarCare
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
             routes.MapRoute(
-        name: "Profile",
-        url: "Profile/{action}/{id}",
-        defaults: new { controller = "Profile", action = "Index", id = UrlParameter.Optional }
-    );
+                name: "Profile",
+                url: "Profile/{action}/{id}",
+                defaults: new { controller = "UserProfile", action = "Index", id = UrlParameter.Optional } // FIXED
+            );
 
             routes.MapRoute(
                 name: "Default",
