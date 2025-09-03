@@ -169,6 +169,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CarRentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ServicesController.cs" />
@@ -182,6 +183,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Car.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\UserDbContext.cs" />
@@ -206,6 +208,10 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\img\tesla_model_3.jpg" />
+    <Content Include="Content\img\ford_mustang.jpg" />
+    <Content Include="Content\img\toyota_camry.jpg" />
+    <Content Include="Content\img\honda_civic.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -264,9 +270,10 @@
     <Content Include="Views\Services\Additional.cshtml" />
     <Content Include="Views\User\BookingStatus.cshtml" />
     <Content Include="Views\User\Profile.cshtml" />
-    <Content Include="Views\Signup.cshtml" />
     <Content Include="Views\Account\Signup.cshtml" />
     <Content Include="Views\User\Booking.cshtml" />
+    <Content Include="Views\CarRent\Index.cshtml" />
+    <Content Include="Views\CarRent\Rent.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
