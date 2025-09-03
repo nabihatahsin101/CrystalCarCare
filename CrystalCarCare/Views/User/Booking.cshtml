@@ -1,0 +1,118 @@
+﻿@{
+    ViewBag.Title = "Booking";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h2 class="mb-0">Book Your Service</h2>
+                </div>
+                <div class="card-body">
+                    <form id="bookingForm" method="post" action="@Url.Action("Booking", "User")">
+                        <div class="form-group mb-3">
+                            <label for="serviceType" class="form-label">Service Type</label>
+                            <select class="form-select" id="serviceType" name="serviceType" required>
+                                <option value="" selected disabled>Select a service</option>
+                                <option value="Premium Wash">Premium Wash</option>
+                                <option value="Oil Change">Oil Change</option>
+                                <option value="Detailing">Detailing</option>
+                                <option value="Tire Service">Tire Service</option>
+                                <option value="Brake Service">Brake Service</option>
+                            </select>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="date" class="form-label">Preferred Date</label>
+                                <input type="date" class="form-control" id="date" name="date" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="time" class="form-label">Preferred Time</label>
+                                <select class="form-select" id="time" name="time" required>
+                                    <option value="" selected disabled>Select time</option>
+                                    <option value="09:00">09:00 AM</option>
+                                    <option value="10:00">10:00 AM</option>
+                                    <option value="11:00">11:00 AM</option>
+                                    <option value="12:00">12:00 PM</option>
+                                    <option value="13:00">01:00 PM</option>
+                                    <option value="14:00">02:00 PM</option>
+                                    <option value="15:00">03:00 PM</option>
+                                    <option value="16:00">04:00 PM</option>
+                                    <option value="17:00">05:00 PM</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="vehicleMake" class="form-label">Vehicle Make</label>
+                                <input type="text" class="form-control" id="vehicleMake" name="vehicleMake" placeholder="e.g., Toyota" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="vehicleModel" class="form-label">Vehicle Model</label>
+                                <input type="text" class="form-control" id="vehicleModel" name="vehicleModel" placeholder="e.g., Camry" required>
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label for="vehicleYear" class="form-label">Vehicle Year</label>
+                                <input type="number" class="form-control" id="vehicleYear" name="vehicleYear" min="1990" max="2023" placeholder="e.g., 2020" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label for="licensePlate" class="form-label">License Plate</label>
+                                <input type="text" class="form-control" id="licensePlate" name="licensePlate" placeholder="e.g., ABC123" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="specialRequests" class="form-label">Special Requests (Optional)</label>
+                            <textarea class="form-control" id="specialRequests" name="specialRequests" rows="3" placeholder="Any special requirements or notes..."></textarea>
+                        </div>
+                        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                            <button type="button" class="btn btn-outline-secondary me-md-2" onclick="resetForm()">Reset</button>
+                            <button type="submit" class="btn btn-primary">Submit Booking</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .card {
+        border: none;
+        border-radius: 10px;
+        overflow: hidden;
+    }
+
+    .card-header {
+        border-radius: 10px 10px 0 0 !important;
+    }
+
+    .form-control:focus, .form-select:focus {
+        border-color: #003087;
+        box-shadow: 0 0 0 0.25rem rgba(0, 48, 135, 0.25);
+    }
+
+    .btn-primary {
+        background-color: #003087;
+        border-color: #003087;
+    }
+
+        .btn-primary:hover {
+            background-color: #00205b;
+            border-color: #00205b;
+        }
+</style>
+
+@section Scripts {
+    <script>
+        // Set minimum date to today
+        document.getElementById('date').min = new Date().toISOString().split('T')[0];
+
+        // Reset form function
+        function resetForm() {
+            document.getElementById('bookingForm').reset();
+        }
+    </script>
+}
