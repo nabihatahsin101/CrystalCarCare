@@ -1,10 +1,119 @@
 @model CrystalCarCare.Models.ProfileModel
 @{
     ViewBag.Title = "Profile";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    Layout = "~/Views/Shared/_Layout.cshtml"; // make sure your _Layout has the navbar at top
 }
 
-<div class="container mt-4">
+<style>
+    /* -------------------- Global -------------------- */
+    body {
+        background-color: #111;
+        color: #FFD700;
+        font-family: 'Roboto', sans-serif;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        margin: 0;
+    }
+
+    /* Container styling */
+    .container {
+        flex: 1;
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0px 0px; /* top and bottom spacing for navbar & content */
+    }
+
+    /* -------------------- Cards -------------------- */
+    .card {
+        background-color: #1a1a1a;
+        border: 1px solid #444;
+        border-radius: 12px;
+        color: #FFD700;
+        box-shadow: 0 6px 15px rgba(0,0,0,0.5);
+        transition: transform 0.3s, box-shadow 0.3s;
+        margin-bottom: 350px; /* spacing between cards */
+    }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(255, 215, 0, 0.3);
+        }
+
+    /* -------------------- Buttons -------------------- */
+    .btn-primary {
+        background-color: #FFD700;
+        border-color: #FFD700;
+        color: #111;
+        font-weight: 600;
+        transition: 0.3s all;
+    }
+
+        .btn-primary:hover {
+            background-color: #FFA500;
+            border-color: #FFA500;
+            transform: scale(1.05);
+            box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
+        }
+
+    /* -------------------- Text -------------------- */
+    .text-secondary {
+        color: #e0e0e0 !important;
+    }
+
+    h2, h4, h5, h6 {
+        color: #FFD700;
+    }
+
+    p.text-muted {
+        color: #ccc !important;
+    }
+
+    /* -------------------- Alert -------------------- */
+    .alert-success {
+        background-color: #1a1a1a;
+        color: #32CD32;
+        border-color: #32CD32;
+    }
+
+    .btn-close {
+        filter: invert(1);
+    }
+
+    /* -------------------- Profile Layout -------------------- */
+    .profile-row {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center; /* center horizontally */
+        gap: 20px; /* spacing between profile and info cards */
+    }
+
+    .profile-col {
+        flex: 1;
+        min-width: 300px;
+    }
+
+    /* Center the title & description */
+    .container h2, .container p {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+
+    /* Add padding inside card body */
+    .card-body {
+        padding: 20px;
+    }
+
+    /* Profile image styling */
+    .profile-img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 50%;
+        margin-bottom: 15px;
+    }
+</style>
+<div class="container">
     <h2>User Profile</h2>
     <p>View and update your profile information.</p>
 
@@ -16,8 +125,8 @@
         </div>
     }
 
-    <div class="row">
-        <div class="col-md-4">
+    <div class="profile-row">
+        <div class="profile-col col-md-4">
             <div class="card">
                 <div class="card-body text-center">
                     <img src="@Model.ProfilePicture" alt="Profile Picture" class="rounded-circle mb-3" style="width: 150px; height: 150px; object-fit: cover;">
@@ -27,53 +136,35 @@
             </div>
         </div>
 
-        <div class="col-md-8">
+        <div class="profile-col col-md-8">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">Personal Information</h5>
                     <div class="row mb-3">
-                        <div class="col-sm-3">
-                            <h6 class="mb-0">Full Name</h6>
-                        </div>
-                        <div class="col-sm-9 text-secondary">
-                            @Model.Name
-                        </div>
+                        <div class="col-sm-3"><h6 class="mb-0">Full Name</h6></div>
+                        <div class="col-sm-9 text-secondary">@Model.Name</div>
                     </div>
                     <div class="row mb-3">
-                        <div class="col-sm-3">
-                            <h6 class="mb-0">Email</h6>
-                        </div>
-                        <div class="col-sm-9 text-secondary">
-                            @Model.Email
-                        </div>
+                        <div class="col-sm-3"><h6 class="mb-0">Email</h6></div>
+                        <div class="col-sm-9 text-secondary">@Model.Email</div>
                     </div>
                     <div class="row mb-3">
-                        <div class="col-sm-3">
-                            <h6 class="mb-0">Phone</h6>
-                        </div>
-                        <div class="col-sm-9 text-secondary">
-                            @Model.Phone
-                        </div>
+                        <div class="col-sm-3"><h6 class="mb-0">Phone</h6></div>
+                        <div class="col-sm-9 text-secondary">@Model.Phone</div>
                     </div>
                     <div class="row mb-3">
-                        <div class="col-sm-3">
-                            <h6 class="mb-0">Date of Birth</h6>
-                        </div>
+                        <div class="col-sm-3"><h6 class="mb-0">Date of Birth</h6></div>
                         <div class="col-sm-9 text-secondary">
                             @(Model.DateOfBirth != null ? Model.DateOfBirth.Value.ToString("MMMM dd, yyyy") : "Not specified")
                         </div>
                     </div>
                     <div class="row mb-3">
-                        <div class="col-sm-3">
-                            <h6 class="mb-0">Address</h6>
-                        </div>
-                        <div class="col-sm-9 text-secondary">
-                            @(Model.Address ?? "Not specified")
-                        </div>
+                        <div class="col-sm-3"><h6 class="mb-0">Address</h6></div>
+                        <div class="col-sm-9 text-secondary">@(Model.Address ?? "Not specified")</div>
                     </div>
                     <div class="row">
                         <div class="col-sm-12">
-                            <a href="@Url.Action("Edit", "UserProfile")" class="btn btn-primary">Edit Profile</a>
+                            <a href="@Url.Action("Edit", "UserProfile")" class="btn btn-primary w-100">Edit Profile</a>
                         </div>
                     </div>
                 </div>
