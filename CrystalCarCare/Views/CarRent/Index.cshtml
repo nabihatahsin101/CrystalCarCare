@@ -1,0 +1,55 @@
+﻿@model IEnumerable<CrystalCarCare.Models.Car>
+
+@{
+    ViewBag.Title = "Car Rental - CrystalCarCare";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="mb-4">Car Rental Options</h1>
+
+        <!-- Search Form -->
+        <form action="@Url.Action("Index")" method="get" class="mb-4">
+            <div class="input-group">
+                <input type="text" name="searchString" class="form-control" placeholder="Search by Make or Model" value="@ViewBag.SearchString" />
+                <button type="submit" class="btn btn-primary">Search</button>
+            </div>
+        </form>
+
+        <!-- Sort Links -->
+        <div class="mb-3">
+            Sort by:
+            <a href="@Url.Action("Index", new { sortOrder = ViewBag.PriceSortParm, searchString = ViewBag.SearchString })">Price</a> |
+            <a href="@Url.Action("Index", new { sortOrder = ViewBag.YearSortParm, searchString = ViewBag.SearchString })">Year</a>
+        </div>
+
+        <!-- Car List -->
+        <div class="row">
+            @foreach (var car in Model)
+            {
+                <div class="col-md-4 mb-4">
+                    <div class="card">
+                        <img src="/Content/img/@(car.Make.ToLower().Replace(" ", "_") + "_" + car.Model.ToLower().Replace(" ", "_") + ".jpg")" class="card-img-top" alt="@car.Make @car.Model">
+                        <div class="card-body">
+                            <h5 class="card-title">@car.Make @car.Model (@car.Year)</h5>
+                            <p class="card-text">Price per day: $@car.RentalPricePerDay</p>
+                            <p class="card-text">Available: @(car.IsAvailable ? "Yes" : "No")</p>
+                            <a href="#" class="btn btn-primary">Rent Now</a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
