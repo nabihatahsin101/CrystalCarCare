@@ -264,7 +264,6 @@
     <Content Include="Views\Services\Additional.cshtml" />
     <Content Include="Views\User\BookingStatus.cshtml" />
     <Content Include="Views\User\Profile.cshtml" />
-    <Content Include="Views\Signup.cshtml" />
     <Content Include="Views\Account\Signup.cshtml" />
     <Content Include="Views\User\Booking.cshtml" />
   </ItemGroup>
