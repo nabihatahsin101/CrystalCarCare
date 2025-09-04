@@ -1,0 +1,14 @@
+﻿@model CrystalCarCare.Models.Booking
+
+@{
+    ViewBag.Title = "Booking Confirmed";
+}
+
+<h2>Booking Confirmed!</h2>
+
+<p>Your booking ID: <b>@Model.BookingId</b></p>
+<p>Service: @Model.ServiceName</p>
+<p>Price: $@Model.Price</p>
+<p>Name: @Model.Name</p>
+<p>Phone: @Model.Phone</p>
+<p>Date: @Model.CreatedAt</p>
