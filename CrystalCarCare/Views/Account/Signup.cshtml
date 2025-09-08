@@ -5,38 +5,49 @@
 
 <style>
     body {
-        background-color: #f0f4f8;
-        font-family: Arial, sans-serif;
+        background-color: #111; /* dark background */
+        font-family: 'Roboto', sans-serif;
         margin: 0;
         padding: 0;
+        color: #FFD700;
     }
 
+    /* Center signup container */
     .signup-container {
         display: flex;
         justify-content: center;
         align-items: center;
-        min-height: calc(100vh - 70px); /* leaves space for navbar */
+        min-height: calc(100vh - 70px); /* leave space for navbar */
         padding-top: 50px;
     }
 
+    /* Signup box (same as login box style) */
     .signup-box {
-        background-color: #1e3a8a; /* deep blue */
+        background-color: #1a1a1a; /* dark card background */
         padding: 40px;
         border-radius: 12px;
-        box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+        box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3); /* subtle gold glow */
         width: 350px;
         text-align: center;
+        border: 1px solid #FFD700;
+        transition: transform 0.3s, box-shadow 0.3s;
     }
 
+        .signup-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(255, 215, 0, 0.5);
+        }
+
         .signup-box h2 {
-            color: white;
+            color: #FFD700;
             margin-bottom: 20px;
+            font-weight: bold;
         }
 
         .signup-box label {
             display: block;
             font-weight: bold;
-            color: white;
+            color: #FFD700;
             margin-bottom: 5px;
             text-align: left;
         }
@@ -46,24 +57,33 @@
             padding: 10px;
             margin-bottom: 15px;
             border-radius: 6px;
-            border: none;
+            border: 1px solid #444;
             outline: none;
+            background-color: #111;
+            color: #FFD700;
         }
 
+            .signup-box input:focus {
+                border-color: #FFD700;
+                box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+            }
+
         .signup-box button {
-            background-color: #2563eb;
-            color: white;
+            background-color: #FFD700; /* gold button */
+            color: #111;
             font-weight: bold;
             padding: 10px;
             width: 100%;
             border: none;
             border-radius: 6px;
             cursor: pointer;
-            transition: 0.3s;
+            transition: 0.3s all;
         }
 
             .signup-box button:hover {
-                background-color: #1d4ed8;
+                background-color: #FFA500; /* darker gold on hover */
+                transform: scale(1.05);
+                box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
             }
 </style>
 

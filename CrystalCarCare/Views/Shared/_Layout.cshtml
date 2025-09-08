@@ -275,9 +275,7 @@
                         @Html.ActionLink("Book Now", "Booking", "User", null, new { @class = "nav-link" })
                     </li>
                     <li>@Html.ActionLink("Rent", "Index", "CarRent", null, new { @class = "nav-link" })</li>
-                    <li class="nav-item">
-                        @Html.ActionLink("Carwash", "CarWash", "Services", null, new { @class = "nav-link" })
-                    </li>
+                    
 
 
                     <li>@Html.ActionLink("Profile", "Index", "UserProfile", new { area = "" }, new { @class = "nav-link" })</li>
@@ -297,7 +295,7 @@
                     else
                     {
                         <li class="nav-item">
-                            @Html.ActionLink("Register", "Register", "Account", null, new { @class = "nav-link" })
+                            @Html.ActionLink("Register", "Signup", "Account", null, new { @class = "nav-link" })
                         </li>
                         <li class="nav-item">
                             @Html.ActionLink("Log In", "Login", "Account", null, new { @class = "nav-link" })
