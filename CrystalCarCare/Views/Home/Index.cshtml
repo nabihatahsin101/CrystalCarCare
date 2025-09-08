@@ -1,10 +1,18 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Crystal Car Care - Premium Automotive Services</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 
     <style>
@@ -15,97 +23,133 @@
             --light: #f8f9fa;
             --dark: #1a252f;
             --success: #2ecc71;
-            --neutral: #121212; /* updated to match navbar background */
-            --spacing-xs: 0.5rem;
-            --spacing-sm: 1rem;
-            --spacing-md: 1.5rem;
-            --spacing-lg: 2rem;
-            --spacing-xl: 3rem;
+            --neutral: #121212;
             --border-radius: 12px;
-            --transition: all 0.3s ease;
             --shadow: 0 10px 25px rgba(0,0,0,0.08);
-        }
-
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
         }
 
         body {
             font-family: 'Roboto', sans-serif;
             background: var(--neutral);
             color: var(--dark);
-            line-height: 1.6;
-            scroll-behavior: smooth;
-        }
-        /* Section Titles */
-        .section-title h2 {
-            color: #FFD700; /* gold for titles */
+            margin: 0;
+            padding: 0;
         }
 
-        /* Section Description / Paragraph */
-        .section-title p {
-            color: #e0e0e0; /* light gray for text */
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 var(--spacing-md);
-        }
-
-        /* Hero */
+        /* Hero Carousel */
         .hero {
-            min-height: 85vh; /* full viewport height */
+            width: 100%;
+            height: 100vh;
+            min-height: 600px;
+            overflow: hidden;
+          
+        }
+
+        .carousel-inner {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* Overlay */
+        .hero-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             display: flex;
             justify-content: center;
             align-items: center;
-            background: linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)), url('https://images.unsplash.com/photo-1503376780353-7e6692767b70?ixlib=rb-4.0.3&auto=format&fit=crop&w=1500&q=80') center/cover no-repeat;
-            color: #FFD700; /* gold theme */
+            flex-direction: column;
             text-align: center;
             padding: 0 1rem;
-            overflow: hidden;
+            background: rgba(0,0,0,0); /* Slight overlay for better text contrast */
+            color: #FFD700;
         }
 
-        .hero-content {
-            width: 100%; /* full width of hero */
-            max-width: 1200px; /* optional to limit max width */
-            margin: 0 auto; /* center it horizontally */
-            padding: 0 2rem; /* optional padding so text doesn't touch edges */
+       .hero-overlay h1 {
+            color: #FFD700;
+            font-weight: 900; /* Maximum boldness */
+            font-size: clamp(2.5rem, 6vw, 4.5rem); /* Larger size for impact */
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.6); /* Stronger shadow */
+            letter-spacing: 2px; /* Slight spacing for premium feel */
+            text-transform: uppercase; /* Uppercase for emphasis */
+            animation: glow 2s ease-in-out infinite alternate; /* Subtle glow animation */
         }
 
-        .hero h1 {
-            font-size: clamp(2rem, 5vw, 3.5rem);
-            font-weight: 700;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
-            letter-spacing: 1px;
+        @@keyframes glow {
+            from {
+                text-shadow: 2px 2px 5px rgba(0,0,0,0.6), 0 0 10px rgba(255,215,0,0.5);
+            }
+            to {
+                text-shadow: 2px 2px 5px rgba(0,0,0,0.6), 0 0 20px rgba(255,215,0,0.8);
+            }
         }
 
-        .hero p {
-            font-size: clamp(1rem, 2vw, 1.25rem);
-            margin-bottom: 2rem;
-            text-shadow: 1px 1px 6px rgba(0,0,0,0.7);
-            color: #e0e0e0; /* light gray for readability */
+        .hero-overlay p {
+            color: #FFD700;
+            font-weight: 500; /* Slightly bolder for readability */
+            font-size: clamp(1rem, 2.5vw, 1.5rem);
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            max-width: 600px;
         }
+
+        .btn-cta {
+            background: #FFD700;
+            color: #111;
+            padding: 0.85rem 1.75rem; /* Slightly larger padding */
+            border-radius: 30px; /* Slightly rounder */
+            text-decoration: none;
+            font-weight: 500;
+            font-size: clamp(1.25rem, 3vw, 1.5rem); /* Larger text */
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            transition: all 0.3s ease;
+            box-shadow: var(--shadow);
+        }
+
+            .btn-cta:hover {
+                background: #FFA500;
+                transform: scale(1.1);
+                box-shadow: 0 12px 30px rgba(0,0,0,0.2); /* Enhanced hover shadow */
+            }
+
+            .btn-cta .arrow-circle {
+                background: #fff;
+                border-radius: 50%;
+                width: 28px; /* Slightly larger for balance */
+                height: 28px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .btn-cta .bi-arrow-up-right {
+                color: #111;
+                font-size: 1.2rem; /* Slightly larger arrow */
+            }
 
 
         /* Services */
         .services {
-            padding: var(--spacing-xl) 0;
+            padding: 3rem 0;
         }
 
         .section-title h2 {
-            font-size: clamp(1.75rem,4vw,2.5rem);
+            font-size: clamp(1.75rem, 4vw, 2.5rem);
             margin-bottom: 1rem;
             font-weight: 700;
+            color: #FFD700;
+        }
+
+        .section-title p {
+            color: #e0e0e0;
         }
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit,minmax(300px,1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
         }
 
@@ -114,127 +158,121 @@
             border-radius: var(--border-radius);
             overflow: hidden;
             box-shadow: var(--shadow);
-            transition: var(--transition);
+            transition: 0.3s;
             display: flex;
             flex-direction: column;
         }
 
-            .service-card:hover {
-                transform: translateY(-8px);
-                box-shadow: 0 15px 30px rgba(0,0,0,0.15);
-            }
+        .service-card:hover {
+            transform: translateY(-8px);
+        }
 
         .service-img {
             width: 100%;
             height: 220px;
             object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .service-card:hover .service-img {
-            transform: scale(1.05);
         }
 
         .service-content {
             padding: 1.5rem;
             flex-grow: 1;
-            display: flex;
-            flex-direction: column;
         }
 
         .service-card h3 {
-            color: #FFD700; /* gold for service titles */
+            color: #FFD700;
         }
-
-        .service-card a.btn-outline {
-            border-color: #FFD700; /* gold border */
-            color: #FFD700; /* gold text */
-            background-color: transparent;
-            transition: 0.3s;
-        }
-
-            .service-card a.btn-outline:hover {
-                background-color: #FFD700; /* gold background on hover */
-                color: #111; /* dark text on hover */
-                border-color: #FFD700; /* maintain gold border */
-            }
 
         .service-card p {
-            color: #e0e0e0; /* light gray for descriptions */
+            color: #e0e0e0;
         }
 
+        .btn-outline {
+            border: 1px solid #FFD700;
+            color: #FFD700;
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            text-decoration: none;
+            transition: 0.3s;
+            display: inline-block;
+            margin-top: auto;
+        }
+
+        .btn-outline:hover {
+            background: #FFD700;
+            color: #111;
+        }
         /* Features */
         .features {
-            background: #111; /* dark background like hero */
-            padding: var(--spacing-xl) 0;
+            background: #111;
+            padding: 4rem 0;
+        }
+
+        .features-grid {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: center;
+            gap: 2rem;
+            overflow-x: auto; /* Horizontal scrolling on small screens */
+            padding-bottom: 1rem; /* Space for scrollbar */
         }
 
         .feature-item {
-            background: #1a1a1a; /* dark card background */
+            background: #1a1a1a;
             border-radius: var(--border-radius);
             text-align: center;
-            padding: 2rem;
-            transition: var(--transition);
-            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            color: #FFD700; /* gold text for headings inside cards */
+            padding: 2.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: var(--shadow);
+            color: #FFD700;
+            flex: 0 0 250px; /* Fixed width for each item */
+            min-width: 250px; /* Ensure consistent size */
         }
 
             .feature-item p {
-                color: #e0e0e0; /* light gray for description text */
-            }
-
-            .feature-item:hover {
-                transform: translateY(-5px);
-                box-shadow: 0 12px 30px rgba(0,0,0,0.15);
+                color: #e0e0e0;
+                font-size: 1rem;
             }
 
         .feature-icon {
-            font-size: 3rem;
-            color: #FFD700; /* gold icons */
-            margin-bottom: 1rem;
-            transition: transform 0.3s;
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
         }
 
-        .feature-item:hover .feature-icon {
-            transform: scale(1.2) rotate(10deg);
+        .feature-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.2);
         }
 
+        /* CTA Section */
         .cta {
-            background: #111; /* dark background like navbar */
-            color: #FFD700; /* gold text */
-            padding: var(--spacing-xl) 0;
+            background: #111;
+            color: #FFD700;
             text-align: center;
+            padding: 3rem 1rem;
         }
 
-            .cta h2 {
-                color: #FFD700; /* gold title */
-            }
+        .cta p {
+            color: #e0e0e0;
+        }
 
-            .cta p {
-                color: #e0e0e0; /* light gray description */
-            }
+        .cta .btn-light {
+            background: #FFD700;
+            color: #111;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            transition: 0.3s;
+            border: none;
+        }
 
-            .cta .btn-light {
-                background: #FFD700; /* gold button */
-                color: #111; /* dark text on button */
-                padding: 0.75rem 1.5rem;
-                border-radius: var(--border-radius);
-                font-weight: 500;
-                transition: 0.3s;
-                border: none;
-            }
-
-                .cta .btn-light:hover {
-                    background: #FFA500; /* darker gold on hover */
-                    color: #111;
-                    transform: scale(1.05);
-                }
+        .cta .btn-light:hover {
+            background: #FFA500;
+            transform: scale(1.05);
+        }
 
         /* Responsive */
-        @@media(max-width:768px) {
+        @@media (max-width: 768px) {
             .services-grid, .features-grid {
                 grid-template-columns: 1fr;
             }
@@ -243,15 +281,40 @@
 </head>
 <body>
 
-    <!-- Hero Section -->
+    <!-- Hero Section with Carousel -->
     <section class="hero">
-        <div class="hero-content">
-            <h1>Premium Automotive Care</h1>
+        <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="@Url.Content("~/Content/img/carwash (2).jpg")" class="d-block w-100" alt="Car Wash">
+                </div>
+                <div class="carousel-item">
+                    <img src="@Url.Content("~/Content/img/mechanic service.jpg")" class="d-block w-100" alt="Mechanic Service">
+                </div>
+                <div class="carousel-item">
+                    <img src="@Url.Content("~/Content/img/detail.jpg")" class="d-block w-100" alt="Detailing Service">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+        <!-- Overlay -->
+        <div class="hero-overlay">
+            <h1>Crystal Car Care</h1>
             <p>Your car deserves the best. Experience luxury car detailing and services like never before.</p>
-            <a href="/User/Booking" class="btn-cta">Book Now</a>
+            <a href="/User/Booking" class="btn-cta" aria-label="Book an appointment now">
+                Book Now
+                <span class="arrow-circle"><i class="bi bi-arrow-up-right"></i></span>
+            </a>
         </div>
     </section>
-
 
     <!-- Services Section -->
     <section class="services" id="services">
@@ -266,7 +329,7 @@
                     <div class="service-content">
                         <h3>Car Wash</h3>
                         <p>Professional exterior and interior cleaning that leaves your vehicle sparkling clean.</p>
-                        <a href="/services/carwash" class="btn btn-outline">Learn More</a>
+                        <a href="/services/carwash" class="btn-outline">Learn More</a>
                     </div>
                 </div>
                 <div class="service-card">
@@ -274,21 +337,22 @@
                     <div class="service-content">
                         <h3>Mechanic Services</h3>
                         <p>Expert maintenance and repairs by certified technicians using premium parts.</p>
-                        <a href="/services/mechanic" class="btn btn-outline">Learn More</a>
+                        <a href="/services/mechanic" class="btn-outline">Learn More</a>
                     </div>
                 </div>
                 <div class="service-card">
-                    <img src="https://images.unsplash.com/photo-1471289549423-04adaecfa1f1?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Detailing Services" class="service-img">
+                    <img src="https://images.unsplash.com/photo-1471289549423-04adaecfa1f1?auto=format&fit=crop&w=600&q=80" alt="Detailing Services" class="service-img">
                     <div class="service-content">
                         <h3>Detailing Services</h3>
                         <p>Premium detailing and paint protection to enhance your vehicle's appearance.</p>
-                        <a href="/services/additional" class="btn btn-outline">Learn More</a>
+                        <a href="/services/additional" class="btn-outline">Learn More</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Features Section -->
     <!-- Features Section -->
     <section class="features" id="features">
         <div class="container">
@@ -305,6 +369,7 @@
         </div>
     </section>
 
+
     <!-- CTA Section -->
     <section class="cta" id="cta">
         <h2>Elevate Your Vehicle's Care Today</h2>
@@ -312,6 +377,7 @@
         <a href="/booking" class="btn-light">Schedule Appointment</a>
     </section>
 
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
-
