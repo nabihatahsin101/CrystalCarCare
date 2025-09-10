@@ -6,6 +6,7 @@ using CrystalCarCare.Models;
 
 namespace CrystalCarCare.Controllers
 {
+    [Authorize]
     public class CarRentController : Controller
     {
         // Sample data (replace with database in production)

@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
@@ -266,49 +266,43 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "nav-link" })
+                        @Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="/#services">Services</a>
-                    </li>
-                    <li class="nav-item">
-                        @Html.ActionLink("Book Now", "Booking", "User", null, new { @class = "nav-link" })
-                    </li>
-                    <li>@Html.ActionLink("Rent", "Index", "CarRent", null, new { @class = "nav-link" })</li>
-                    
-
-
-                    <li>@Html.ActionLink("Profile", "Index", "UserProfile", new { area = "" }, new { @class = "nav-link" })</li>
+            
 
                     @if (Request.IsAuthenticated)
                     {
+                        <li class="nav-item"> 
+                            <a class="nav-link" href="/#services">Services</a>
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Book Now", "Booking", "User", null, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Rent", "Index", "CarRent", null, new { @class = "nav-link" })
+                        </li>
                         <li class="nav-item">
                             @Html.ActionLink("Booking Status", "BookingStatus", "User", null, new { @class = "nav-link" })
                         </li>
                         <li class="nav-item">
-                            @Html.ActionLink("Profile", "Profile", "User", null, new { @class = "nav-link" })
+                            @Html.ActionLink("Profile", "Index", "UserProfile", null, new { @class = "nav-link" })
                         </li>
                         <li class="nav-item">
                             @Html.ActionLink("Log Out", "LogOff", "Account", null, new { @class = "nav-link" })
                         </li>
+
                     }
                     else
                     {
                         <li class="nav-item">
-                            @Html.ActionLink("Register", "Signup", "Account", null, new { @class = "nav-link" })
+                            @Html.ActionLink("Sign Up", "Signup", "Account", null, new { @class = "nav-link" })
                         </li>
                         <li class="nav-item">
                             @Html.ActionLink("Log In", "Login", "Account", null, new { @class = "nav-link" })
                         </li>
-
-
-
                     }
-
-
-
-
                 </ul>
+
 
                 <!-- Login / Register Partial -->
 
