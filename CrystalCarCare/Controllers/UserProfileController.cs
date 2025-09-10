@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace CrystalCarCare.Controllers
 {
+    [Authorize]
     public class UserProfileController : Controller  // Added inheritance
     {
         private static ProfileModel _currentUser = new ProfileModel
