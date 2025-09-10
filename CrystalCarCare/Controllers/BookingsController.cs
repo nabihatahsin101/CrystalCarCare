@@ -10,6 +10,7 @@ using CrystalCarCare.Models;
 
 namespace CrystalCarCare.Controllers
 {
+    [Authorize]
     public class BookingsController : Controller
     {
         private BookingDbContext db = new BookingDbContext();
