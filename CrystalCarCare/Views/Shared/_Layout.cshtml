@@ -272,10 +272,12 @@
                         <a class="nav-link" href="/#services">Services</a>
                     </li>
                     <li class="nav-item">
-                        @Html.ActionLink("Book Now", "Booking", "User", null, new { @class = "nav-link" })
+                        <a href="@Url.Action("Booking", "User")" class="nav-link">Book Now</a>
+                    </li>
+
                     </li>
                     <li>@Html.ActionLink("Rent", "Index", "CarRent", null, new { @class = "nav-link" })</li>
-                    
+
 
 
                     <li>@Html.ActionLink("Profile", "Index", "UserProfile", new { area = "" }, new { @class = "nav-link" })</li>
