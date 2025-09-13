@@ -268,7 +268,20 @@
                     <li class="nav-item">
                         @Html.ActionLink("Home", "Index", "Home", null, new { @class = "nav-link" })
                     </li>
-            
+
+                    <li class="nav-item">
+                        <a class="nav-link" href="/#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="@Url.Action("Booking", "User")" class="nav-link">Book Now</a>
+                    </li>
+
+                    </li>
+                    <li>@Html.ActionLink("Rent", "Index", "CarRent", null, new { @class = "nav-link" })</li>
+
+
+
+                    <li>@Html.ActionLink("Profile", "Index", "UserProfile", new { area = "" }, new { @class = "nav-link" })</li>
 
                     @if (Request.IsAuthenticated)
                     {
