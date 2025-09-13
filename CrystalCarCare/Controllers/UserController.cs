@@ -28,12 +28,15 @@ namespace CrystalCarCare.Controllers
             ViewBag.Bookings = bookings;
             return View();
         }
-
-        // GET: /User/Booking
-        public ActionResult Booking()
+        // GET: /User/BookNow
+        public ActionResult Booking(string serviceName, decimal? price)
         {
-            return View();
+            ViewBag.ServiceName = serviceName;
+            ViewBag.Price = price ?? 0;
+            return View("Booking"); // Renders Booking.cshtml
         }
+
+
 
         // POST: /User/Booking
         [HttpPost]
