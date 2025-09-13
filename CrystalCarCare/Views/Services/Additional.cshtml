@@ -3,75 +3,159 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Additional Services</h2>
-<p>Other services like tire change, battery check, etc.</p>
+<div class="additional-services py-5">
+    <div class="container">
+        <h2 class="text-center mb-4">Additional Services</h2>
+        <p class="text-center mb-5">Other services like tire change, battery check, and more.</p>
 
-<div class="card p-3 my-3">
-    <h5>Tire Change</h5>
-    <p>Replace old tires with high-quality ones.</p>
-    <button class="btn btn-primary">Book Service</button>
-</div>
+        <div class="row g-4">
 
-<div class="card p-3 my-3">
-    <h5>Battery Check</h5>
-    <p>Check your car battery health and replace if necessary.</p>
-    <button class="btn btn-primary">Book Service</button>
+            <!-- Tire Change -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card service-card h-100">
+                    <img src="~/Content/img/tirechange.jpeg" alt="Tire Change" />
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Tire Change</h5>
+                        <p class="card-text">Replace old tires with high-quality ones for a smoother and safer ride.</p>
+                        <a href="@Url.Action("Booking", "User", new { serviceName = "Tire Change", price = 50 })" class="btn btn-warning mt-auto">
+                            Book Now
+                        </a>
+
+                        
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Battery Check -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card service-card h-100">
+                    <img src="~/Content/img/batterycheck.jpeg" alt="Battery Check" />
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Battery Check</h5>
+                        <p class="card-text">Check your car battery health and replace it if necessary to avoid breakdowns.</p>
+                        
+
+                        <a href="@Url.Action("Booking", "User", new { serviceName = "Battery Check", price = 30 })" class="btn btn-warning mt-auto">
+                            Book Now
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+
+            <!-- Engine Diagnostics -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card service-card h-100">
+                    <img src="~/Content/img/engine.jpeg" alt="Engine Diagnostics" />
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Engine Diagnostics</h5>
+                        <p class="card-text">Full engine check to identify any issues and optimize performance.</p>
+                        <a href="@Url.Action("Booking", "User", new { serviceName = "Engine Diagnostics", price = 30 })" class="btn btn-warning mt-auto">
+                            Book Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Air Filter Replacement -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card service-card h-100">
+                    <img src="~/Content/img/air filter.jpeg" alt="Air Filter Replacement" />
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Air Filter Replacement</h5>
+                        <p class="card-text">Replace your car's air filter to improve engine efficiency and air quality.</p>
+                        <a href="@Url.Action("Booking", "User", new { serviceName= "Air Filter Replacement", price = 25 })" class="btn btn-warning mt-auto">
+                            Book Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wheel Alignment -->
+            <div class="col-md-6 col-lg-4">
+                <div class="card service-card h-100">
+                    <img src="~/Content/img/wheel.jpeg" alt="Wheel Alignment" />
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">Wheel Alignment</h5>
+                        <p class="card-text">Ensure your wheels are perfectly aligned for better handling and tire longevity.</p>
+                        <a href="@Url.Action("Booking", "User", new { serviceName = "Wheel Alignment", price = 40 })" class="btn btn-warning mt-auto">
+                            Book Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>
 
 <style>
     body {
-        background-color: #111; /* dark background */
-        color: #FFD700; /* gold text for headings */
+        background-color: #111;
+        color: #FFD700;
         font-family: 'Roboto', sans-serif;
     }
 
     h2 {
         color: #FFD700;
-        margin-bottom: 1rem;
-        text-align: center;
+        font-weight: 700;
     }
 
     p {
         color: #e0e0e0;
-        text-align: center;
-        margin-bottom: 2rem;
     }
 
-    .card {
-        background-color: #1a1a1a; /* dark card background */
-        color: #FFD700; /* gold text for headings */
+    .service-card {
+        background-color: #1a1a1a;
         border: none;
-        border-radius: 10px;
+        border-radius: 12px;
+        overflow: hidden;
         box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-        padding: 1.5rem;
-        margin: 1rem 0;
+        transition: transform 0.3s, box-shadow 0.3s;
     }
 
-        .card h5 {
-            color: #FFD700;
-            margin-bottom: 0.5rem;
-        }
+    .service-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(255, 215, 0, 0.4);
+    }
 
-        .card p {
-            color: #e0e0e0; /* light gray for descriptions */
-            margin-bottom: 1rem;
-        }
+    .service-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
 
-    .btn-primary {
-        background-color: #FFD700; /* gold button */
-        color: #111; /* dark text */
+    .service-card h5 {
+        color: #FFD700;
+        margin-bottom: 0.5rem;
+    }
+
+    .service-card p {
+        color: #e0e0e0;
+        margin-bottom: 1rem;
+    }
+
+    .btn-warning {
+        background-color: #FFD700;
+        color: #111;
         border: none;
         padding: 0.5rem 1.2rem;
         border-radius: 8px;
         font-weight: 500;
         transition: 0.3s;
-        cursor: pointer;
     }
 
-        .btn-primary:hover {
-            background-color: #FFA500; /* darker gold on hover */
-            color: #111;
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+    .btn-warning:hover {
+        background-color: #FFA500;
+        color: #111;
+        transform: scale(1.05);
+        box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+    }
+
+    @@media (max-width: 767px) {
+        .service-card img {
+            height: 180px;
         }
+    }
 </style>
