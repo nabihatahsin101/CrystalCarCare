@@ -1,6 +1,7 @@
 ﻿using CrystalCarCare.Models;
 using System.Linq;
 using System.Web.Mvc;
+using System.Web.Security;
 
 namespace CrystalCarCare.Controllers
 {
@@ -43,8 +44,11 @@ namespace CrystalCarCare.Controllers
             var user = db.Users.FirstOrDefault(u => u.Email == login.Email && u.Password == login.Password);
             if (user != null)
             {
-                ViewBag.Message = "Login successful!";
-                return View();
+                // Set authentication cookie
+                System.Web.Security.FormsAuthentication.SetAuthCookie(user.Email, false);
+
+                // Redirect to homepage (or dashboard)
+                return RedirectToAction("Index", "Home");
             }
             else
             {
@@ -52,5 +56,12 @@ namespace CrystalCarCare.Controllers
                 return View(login);
             }
         }
+        public ActionResult LogOff()
+        {
+            System.Web.Security.FormsAuthentication.SignOut();
+            return RedirectToAction("Index", "Home");
+        }
+
+
     }
 }

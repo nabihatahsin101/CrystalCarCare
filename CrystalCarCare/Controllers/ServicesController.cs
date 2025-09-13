@@ -2,6 +2,7 @@
 
 namespace CrystalCarCare.Controllers
 {
+    [Authorize]
     public class ServicesController : Controller
     {
         public ActionResult CarWash()
