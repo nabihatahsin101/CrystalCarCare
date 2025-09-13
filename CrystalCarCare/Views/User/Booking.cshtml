@@ -16,13 +16,17 @@
                         <div class="form-group mb-3">
                             <label for="serviceType" class="form-label">Service Type</label>
                             <select class="form-select" id="serviceType" name="serviceType" required>
-                                <option value="" selected disabled>Select a service</option>
-                                <option value="Premium Wash">Premium Wash</option>
-                                <option value="Oil Change">Oil Change</option>
-                                <option value="Detailing">Detailing</option>
-                                <option value="Tire Service">Tire Service</option>
-                                <option value="Brake Service">Brake Service</option>
+                                <option value="" disabled @(ViewBag.ServiceName == null ? "selected" : "")>Select a service</option>
+                                <option value="Premium Wash" @(ViewBag.ServiceName == "Premium Wash" ? "selected" : "")>Premium Wash</option>
+                                <option value="Oil Change" @(ViewBag.ServiceName == "Oil Change" ? "selected" : "")>Oil Change</option>
+                                <option value="Brake Service" @(ViewBag.ServiceName == "Brake Service" ? "selected" : "")>Brake Service</option>
+                                <option value="Tire Change" @(ViewBag.ServiceName == "Tire Change" ? "selected" : "")>Tire Change</option>
+                                <option value="Battery Check" @(ViewBag.ServiceName == "Battery Check" ? "selected" : "")>Battery Check</option>
+                                <option value="Engine Diagnostics" @(ViewBag.ServiceName == "Engine Diagnostics" ? "selected" : "")>Engine Diagnostics</option>
+                                <option value="Air Filter Replacement" @(ViewBag.ServiceName == "Air Filter Replacement" ? "selected" : "")>Air Filter Replacement</option>
+                                <option value="Wheel Alignment" @(ViewBag.ServiceName == "Wheel Alignment" ? "selected" : "")>Wheel Alignment</option>
                             </select>
+
                         </div>
                         <div class="row mb-3">
                             <div class="col-md-6">
