@@ -3,17 +3,124 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Mechanic Services</h2>
-<p>Request repair or maintenance services for your car.</p>
+<style>
+    body {
+        background-color: #111;
+        color: #FFD700;
+        font-family: 'Roboto', sans-serif;
+    }
 
-<div class="card p-3 my-3">
-    <h5>Oil Change</h5>
-    <p>Keep your engine healthy with timely oil changes.</p>
-    <button class="btn btn-warning">Request Service</button>
-</div>
+    h2 {
+        color: #FFD700;
+        margin-bottom: 1rem;
+        text-align: center;
+    }
 
-<div class="card p-3 my-3">
-    <h5>Brake Check</h5>
-    <p>Ensure your brakes are safe and responsive.</p>
-    <button class="btn btn-danger">Request Service</button>
+    p {
+        color: #e0e0e0;
+        text-align: center;
+        margin-bottom: 2rem;
+    }
+
+    .card {
+        background-color: #1a1a1a;
+        color: #FFD700;
+        border: none;
+        border-radius: 10px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        padding: 1.5rem;
+        margin: 1rem 0;
+    }
+
+        .card h5, .card h3 {
+            color: #FFD700;
+            margin-bottom: 0.5rem;
+        }
+
+        .card p {
+            color: #e0e0e0;
+            margin-bottom: 1rem;
+        }
+
+    .btn-warning, .btn-danger {
+        border: none;
+        padding: 0.5rem 1.2rem;
+        border-radius: 8px;
+        font-weight: 500;
+        transition: 0.3s;
+        cursor: pointer;
+    }
+
+        .btn-warning:hover, .btn-danger:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(255, 215, 0, 0.4);
+        }
+
+    img {
+        width: 90%;
+        height: auto;
+        border-radius: 10px;
+    }
+</style>
+
+<div class="mechanic-page py-5">
+    <div class="container">
+
+        <!-- Oil Change -->
+        <div class="card service-card mb-5">
+            <div class="row g-0 align-items-stretch">
+                <!-- Image -->
+                <div class="col-md-6">
+                    <img src="~/Content/img/oilchange.jpg" alt="Oil Change" />
+                </div>
+                <!-- Details -->
+                <div class="col-md-6 details d-flex flex-column justify-content-center">
+                    <h3>Oil Change</h3>
+                    <p class="lead">Keep your engine running smoothly with high-quality oil and filter replacement.</p>
+                    <p><strong>Price:</strong> $40</p>
+                    <p><strong>What’s Included:</strong></p>
+                    <ul>
+                        <li>Engine oil replacement</li>
+                        <li>Oil filter change</li>
+                        <li>Basic engine inspection</li>
+                    </ul>
+                    <!-- Brake Service -->
+                    <a href="@Url.Action("Booking", "User", new { serviceName = "Oil Change", price = 60 })" class="btn btn-warning">
+                        Book Now
+                    </a>
+
+                </div>
+            </div>
+        </div>
+
+        <!-- Brake Check -->
+        <div class="card service-card mb-5">
+            <div class="row g-0 align-items-stretch">
+                <!-- Image -->
+                <div class="col-md-6">
+                    <img src="~/Content/img/brakecheck.jpg" alt="Brake Check" />
+                </div>
+                <!-- Details -->
+                <div class="col-md-6 details d-flex flex-column justify-content-center">
+                    <h3>Brake Check</h3>
+                    <p class="lead">Ensure your brakes are safe, responsive, and ready for any situation.</p>
+                    <p><strong>Price:</strong> $60</p>
+                    <p><strong>What’s Included:</strong></p>
+                    <ul>
+                        <li>Brake pad inspection</li>
+                        <li>Brake fluid check</li>
+                        <li>Brake performance test</li>
+                    </ul>
+                   
+<a href="@Url.Action("Booking", "User", new { serviceName = "Brake Service", price = 60 })" class="btn btn-warning">
+    Book Now
+</a>
+
+
+
+                </div>
+            </div>
+        </div>
+
+    </div>
 </div>
