@@ -1,9 +1,28 @@
-﻿@{
+﻿@model CrystalCarCare.Models.BookingConfirmationViewModel
+
+@{
     ViewBag.Title = "Booking Confirmation";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <div class="container mt-5">
-    <div class="alert alert-success">
-        <h3>@TempData["Message"]</h3>
+    <div class="alert alert-success shadow">
+        <h2>Booking Confirmed!</h2>
+        <p><strong>Name:</strong> @Model.UserName</p>
+        <p><strong>Email:</strong> @Model.Email</p>
+        <p><strong>Service:</strong> @Model.Booking.ServiceType</p>
+        <p><strong>Date:</strong> @Model.Booking.Date.ToShortDateString()</p>
+        <p><strong>Time:</strong> @Model.Booking.Time</p>
+        <p><strong>Vehicle:</strong> @Model.Booking.VehicleYear @Model.Booking.VehicleMake @Model.Booking.VehicleModel</p>
+        <p><strong>License Plate:</strong> @Model.Booking.LicensePlate</p>
+        @if (!string.IsNullOrEmpty(Model.Booking.SpecialRequests))
+        {
+            <p><strong>Special Requests:</strong> @Model.Booking.SpecialRequests</p>
+        }
+
+        <hr />
+        <a href="@Url.Action("DownloadConfirmation", "Account", new { bookingId = Model.Booking.BookingId })" class="btn btn-primary">
+            Download PDF
+        </a>
     </div>
 </div>
