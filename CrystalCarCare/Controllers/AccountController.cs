@@ -1,4 +1,5 @@
 ﻿using CrystalCarCare.Models;
+using Microsoft.AspNet.Identity;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -60,6 +61,33 @@ namespace CrystalCarCare.Controllers
         {
             System.Web.Security.FormsAuthentication.SignOut();
             return RedirectToAction("Index", "Home");
+        }
+        [HttpGet]
+        public ActionResult Booking(string serviceName)
+        {
+            ViewBag.ServiceName = serviceName;
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Booking(Booking booking)
+        {
+            if (ModelState.IsValid)
+            {
+                booking.UserId = User.Identity.GetUserId();
+                db.Bookings.Add(booking);
+                db.SaveChanges();
+                TempData["Message"] = "Your booking has been successfully submitted!";
+                return RedirectToAction("BookingConfirmation");
+            }
+            
+            return View(booking);
+        }
+
+        public ActionResult BookingConfirmation()
+        {
+            return View();
         }
 
 

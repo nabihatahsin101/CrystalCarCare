@@ -1,30 +1,36 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 
 namespace CrystalCarCare.Models
 {
     public class Booking
     {
         [Key]
-        public int BookingId { get; set; } // Auto-generated unique ID
+        public int BookingId { get; set; }
 
         [Required]
-        public string ServiceName { get; set; }
+        public string ServiceType { get; set; }
 
         [Required]
-        public decimal Price { get; set; }
+        public DateTime Date { get; set; }
 
         [Required]
-        [StringLength(100)]
-        public string Name { get; set; }
+        public string Time { get; set; }
 
         [Required]
-        [Phone]
-        public string Phone { get; set; }
+        public string VehicleMake { get; set; }
 
-        public DateTime CreatedAt { get; set; } = DateTime.Now;
+        [Required]
+        public string VehicleModel { get; set; }
+
+        [Required]
+        public int VehicleYear { get; set; }
+
+        [Required]
+        public string LicensePlate { get; set; }
+
+        public string SpecialRequests { get; set; }
+
+        public string UserId { get; set; } // to link booking to logged-in user
     }
 }
