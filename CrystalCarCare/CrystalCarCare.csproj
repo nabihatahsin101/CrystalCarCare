@@ -175,6 +175,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AdminController.cs" />
     <Compile Include="Controllers\CarRentController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -194,6 +195,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\AdminLoginViewModel.cs" />
     <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\BookingConfirmationViewModel.cs" />
     <Compile Include="Models\Car.cs" />
@@ -306,6 +308,9 @@
     <Content Include="Views\CarRent\Rent.cshtml" />
     <Content Include="Views\Account\Booking.cshtml" />
     <Content Include="Views\Account\BookingConfirmation.cshtml" />
+    <Content Include="Views\Admin.cshtml" />
+    <Content Include="Views\Admin\Login.cshtml" />
+    <Content Include="Views\Admin\Dashboard.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

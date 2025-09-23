@@ -270,9 +270,20 @@
                     </li>
 
 
-                    @if (Request.IsAuthenticated)
+                    @* Admin logged in *@
+                    @if (Session["IsAdmin"] != null && (bool)Session["IsAdmin"])
                     {
-                        <li class="nav-item"> 
+                        <li class="nav-item">
+                            @Html.ActionLink("Dashboard", "Dashboard", "Admin", null, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Log Out", "Logout", "Admin", null, new { @class = "nav-link" })
+                        </li>
+                    }
+                    @* Normal user logged in *@
+                    else if (Request.IsAuthenticated)
+                    {
+                        <li class="nav-item">
                             <a class="nav-link" href="/#services">Services</a>
                         </li>
                         <li class="nav-item">
@@ -299,6 +310,9 @@
                         </li>
                         <li class="nav-item">
                             @Html.ActionLink("Log In", "Login", "Account", null, new { @class = "nav-link" })
+                        </li>
+                        <li class="nav-item">
+                            @Html.ActionLink("Admin Login", "Login", "Admin", null, new { @class = "nav-link" })
                         </li>
                     }
                 </ul>
