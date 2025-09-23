@@ -1,0 +1,11 @@
+@{
+    ViewBag.Title = "Admin Dashboard";
+}
+
+<h2>Welcome, @Session["AdminName"]!</h2>
+
+<p>This is the admin dashboard. You can manage your application here.</p>
+
+<p>
+    @Html.ActionLink("Log Out", "Logout", "Admin", null, new { @class = "btn btn-danger" })
+</p>
