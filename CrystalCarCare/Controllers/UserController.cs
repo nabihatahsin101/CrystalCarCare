@@ -1,70 +1,45 @@
 ﻿using System.Web.Mvc;
-using System.Collections.Generic;
+using CrystalCarCare.Models;   // ✅ Add this
+using Microsoft.AspNet.Identity; // ✅ Add this if using Identity
 
 namespace CrystalCarCare.Controllers
 {
-    // Move the BookingModel class to be a top-level class
-    public class BookingModel
-    {
-        public string Id { get; set; }
-        public string Service { get; set; }
-        public string Date { get; set; }
-        public string Status { get; set; }
-    }
-
     public class UserController : Controller
     {
-        // Static list to store bookings (in a real app, this would be a database)
-        private static List<BookingModel> bookings = new List<BookingModel>
-        {
-            new BookingModel { Id = "001", Service = "Premium Wash", Date = "2025-09-02", Status = "Completed" },
-            new BookingModel { Id = "002", Service = "Oil Change", Date = "2025-09-03", Status = "Pending" }
-        };
+        private UserDbContext db = new UserDbContext();
 
-        // GET: /User/BookingStatus
-        public ActionResult BookingStatus()
-        {
-            // Pass the bookings list to the view
-            ViewBag.Bookings = bookings;
-            return View();
-        }
-        // GET: /User/BookNow
-        public ActionResult Booking(string serviceName, decimal? price)
+        [HttpGet]
+        public ActionResult Booking(string serviceName)
         {
             ViewBag.ServiceName = serviceName;
-            ViewBag.Price = price ?? 0;
-            return View("Booking"); // Renders Booking.cshtml
+            return View();
         }
 
-
-
-        // POST: /User/Booking
         [HttpPost]
-        public ActionResult Booking(FormCollection form)
+        [ValidateAntiForgeryToken]
+        public ActionResult Booking(Booking booking)
         {
-            // Create a new booking from form data
-            var newBooking = new BookingModel
+            if (ModelState.IsValid)
             {
-                Id = GenerateBookingId(),
-                Service = form["serviceType"],
-                Date = form["date"],
-                Status = "Confirmed"
-            };
+                // If using Identity
+                booking.UserId = User.Identity.GetUserId();
 
-            // Add to the bookings list
-            bookings.Add(newBooking);
+                // If NOT using Identity, replace with:
+                // booking.UserId = User.Identity.Name;
 
-            // Store in TempData to show confirmation message
-            TempData["NewBooking"] = newBooking;
+                db.Bookings.Add(booking);
+                db.SaveChanges();
 
-            // Redirect to booking status page
-            return RedirectToAction("BookingStatus");
+                TempData["Message"] = "Your booking has been successfully submitted!";
+                return RedirectToAction("BookingConfirmation");
+            }
+
+            return View(booking);
         }
 
-        // Helper method to generate a unique booking ID
-        private string GenerateBookingId()
+        public ActionResult BookingConfirmation()
         {
-            return "BK" + (bookings.Count + 1).ToString("D3");
+            return View();
         }
     }
 }
