@@ -31,6 +31,9 @@ namespace CrystalCarCare.Models
 
         public string SpecialRequests { get; set; }
 
-        public string UserId { get; set; } // to link booking to logged-in user
+        public string UserId { get; set; }
+
+        public string Progress { get; set; } = "Pending"; // Pending, Accepted, Completed
+        public string PaymentStatus { get; set; } = "Not Paid"; // Not Paid, Paid, Online Paid
     }
 }

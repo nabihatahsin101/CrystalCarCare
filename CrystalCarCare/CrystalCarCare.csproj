@@ -193,6 +193,10 @@
     <Compile Include="Migrations\202509222028058_AddBookingTable.Designer.cs">
       <DependentUpon>202509222028058_AddBookingTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202509241700410_AddBookingStatusAndPayment.cs" />
+    <Compile Include="Migrations\202509241700410_AddBookingStatusAndPayment.Designer.cs">
+      <DependentUpon>202509241700410_AddBookingStatusAndPayment.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Admin.cs" />
@@ -312,6 +316,8 @@
     <Content Include="Views\Admin.cshtml" />
     <Content Include="Views\Admin\Login.cshtml" />
     <Content Include="Views\Admin\Dashboard.cshtml" />
+    <Content Include="Views\Account\MyOrders.cshtml" />
+    <Content Include="Views\Admin\ManageBookings.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -349,6 +355,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202509222028058_AddBookingTable.resx">
       <DependentUpon>202509222028058_AddBookingTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202509241700410_AddBookingStatusAndPayment.resx">
+      <DependentUpon>202509241700410_AddBookingStatusAndPayment.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

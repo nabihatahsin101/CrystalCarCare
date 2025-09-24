@@ -59,5 +59,31 @@ namespace CrystalCarCare.Controllers
             Session.Clear(); // ✅ clears both AdminUsername and IsAdmin
             return RedirectToAction("Login");
         }
+        public ActionResult ManageBookings()
+        {
+            using (var db = new UserDbContext())
+            {
+                var bookings = db.Bookings.ToList();
+                return View(bookings);  // pass all bookings to view
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdateBooking(int bookingId, string progress, string paymentStatus)
+        {
+            using (var db = new UserDbContext())
+            {
+                var booking = db.Bookings.FirstOrDefault(b => b.BookingId == bookingId);
+                if (booking != null)
+                {
+                    booking.Progress = progress;
+                    booking.PaymentStatus = paymentStatus;
+                    db.SaveChanges();
+                }
+            }
+            return RedirectToAction("ManageBookings");
+        }
+
     }
 }
