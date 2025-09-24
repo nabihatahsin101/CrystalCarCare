@@ -241,6 +241,7 @@
     <Content Include="Content\img\images.jpeg" />
     <Content Include="Content\img\mechanic service.jpg" />
     <Content Include="Content\img\oilchange.jpg" />
+    <Content Include="Content\img\real car.png" />
     <Content Include="Content\img\tesla_model_3.jpg" />
     <Content Include="Content\img\ford_mustang.jpg" />
     <Content Include="Content\img\tirechange.jpeg" />

@@ -1103,8 +1103,35 @@
 
 
 
-        </script>
-    
+        <script>
+            $(document).ready(function () {
+                $("#send-btn").click(function () {
+                    var message = $("#user-input").val().trim();
+                    if (message === "") return;
+
+                    $("#chat-box").append("<p><strong>You:</strong> " + message + "</p>");
+
+                    // Simple bot logic
+                    let botReply = "Sorry, I didn't understand that. Can you rephrase?";
+                    if (message.toLowerCase().includes("car wash")) botReply = "We offer professional car wash services. Would you like to book now?";
+                    if (message.toLowerCase().includes("mechanic")) botReply = "Our certified technicians can handle all repairs. Want to schedule an appointment?";
+                    if (message.toLowerCase().includes("hello") || message.toLowerCase().includes("hi")) botReply = "Hello! How can I assist you with your car today?";
+
+                    $("#chat-box").append("<p><strong>Bot:</strong> " + botReply + "</p>");
+                    $("#user-input").val("");
+                    $("#chat-box").scrollTop($("#chat-box")[0].scrollHeight);
+                });
+
+            $("#user-input").keypress(function (e) {
+                                                                            if (e.which == 13) $("#send-btn").click();
+                                                                        });
+                                                                    });
+    </script>
+
+
+
+
+
 
 
 </body>
