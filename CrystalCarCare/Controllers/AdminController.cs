@@ -33,9 +33,9 @@ namespace CrystalCarCare.Controllers
 
                 if (admin != null)
                 {
-                    // store both username and flag (keep consistent with existing Dashboard view)
+                    // store both username and flag
                     Session["AdminUsername"] = admin.Username;
-                    Session["AdminName"] = admin.Username; // some views referenced AdminName earlier
+                    Session["AdminName"] = admin.Username; 
                     Session["IsAdmin"] = true;
 
                     return RedirectToAction("Dashboard");
@@ -65,10 +65,40 @@ namespace CrystalCarCare.Controllers
         }
 
         // -------------------------
-        // User management actions
+        // Booking management
         // -------------------------
+        public ActionResult ManageBookings()
+        {
+            if (Session["IsAdmin"] == null || !(bool)Session["IsAdmin"])
+                return RedirectToAction("Login");
 
-        // GET: Admin/Users
+            using (var db = new UserDbContext())
+            {
+                var bookings = db.Bookings.ToList();
+                return View(bookings);  
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult UpdateBooking(int bookingId, string progress, string paymentStatus)
+        {
+            using (var db = new UserDbContext())
+            {
+                var booking = db.Bookings.FirstOrDefault(b => b.BookingId == bookingId);
+                if (booking != null)
+                {
+                    booking.Progress = progress;
+                    booking.PaymentStatus = paymentStatus;
+                    db.SaveChanges();
+                }
+            }
+            return RedirectToAction("ManageBookings");
+        }
+
+        // -------------------------
+        // User management
+        // -------------------------
         public ActionResult Users()
         {
             if (Session["IsAdmin"] == null || !(bool)Session["IsAdmin"])
@@ -76,13 +106,11 @@ namespace CrystalCarCare.Controllers
 
             using (var db = new UserDbContext())
             {
-                // Order by UserId for deterministic list
                 var users = db.Users.OrderBy(u => u.UserId).ToList();
                 return View(users);
             }
         }
 
-        // GET: Admin/DeleteUser/5
         public ActionResult DeleteUser(int? id)
         {
             if (Session["IsAdmin"] == null || !(bool)Session["IsAdmin"])
@@ -101,7 +129,6 @@ namespace CrystalCarCare.Controllers
             }
         }
 
-        // POST: Admin/DeleteUser/5
         [HttpPost, ActionName("DeleteUser")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteUserConfirmed(int id)
@@ -122,7 +149,10 @@ namespace CrystalCarCare.Controllers
             TempData["Success"] = "User deleted successfully.";
             return RedirectToAction("Users");
         }
-        // GET: Admin/ListCars
+
+        // -------------------------
+        // Car management
+        // -------------------------
         public ActionResult ListCars()
         {
             if (Session["IsAdmin"] == null || !(bool)Session["IsAdmin"])
@@ -135,7 +165,6 @@ namespace CrystalCarCare.Controllers
             }
         }
 
-        // GET: Admin/AddCar
         public ActionResult AddCar()
         {
             if (Session["IsAdmin"] == null || !(bool)Session["IsAdmin"])
@@ -144,7 +173,6 @@ namespace CrystalCarCare.Controllers
             return View();
         }
 
-        // POST: Admin/AddCar
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult AddCar(Car model, HttpPostedFileBase ImageFile)
@@ -173,7 +201,6 @@ namespace CrystalCarCare.Controllers
             return RedirectToAction("ListCars");
         }
 
-        // GET: Admin/EditCar/5
         public ActionResult EditCar(int id)
         {
             if (Session["IsAdmin"] == null || !(bool)Session["IsAdmin"])
@@ -187,7 +214,6 @@ namespace CrystalCarCare.Controllers
             }
         }
 
-        // POST: Admin/EditCar/5
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult EditCar(Car model, HttpPostedFileBase ImageFile)
@@ -221,7 +247,6 @@ namespace CrystalCarCare.Controllers
             return RedirectToAction("ListCars");
         }
 
-        // GET: Admin/DeleteCar/5
         public ActionResult DeleteCar(int id)
         {
             if (Session["IsAdmin"] == null || !(bool)Session["IsAdmin"])
@@ -235,7 +260,6 @@ namespace CrystalCarCare.Controllers
             }
         }
 
-        // POST: Admin/DeleteCar/5
         [HttpPost, ActionName("DeleteCar")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteCarConfirmed(int id)
@@ -254,6 +278,5 @@ namespace CrystalCarCare.Controllers
             TempData["Success"] = "Car deleted successfully!";
             return RedirectToAction("ListCars");
         }
-
     }
 }

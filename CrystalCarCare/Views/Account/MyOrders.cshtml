@@ -1,0 +1,32 @@
+﻿@model IEnumerable<CrystalCarCare.Models.Booking>
+
+@{
+    ViewBag.Title = "My Orders";
+}
+
+<div class="container mt-5">
+    <h2>My Orders</h2>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Booking ID</th>
+                <th>Service</th>
+                <th>Date</th>
+                <th>Progress</th>
+                <th>Payment</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var booking in Model)
+            {
+                <tr>
+                    <td>@booking.BookingId</td>
+                    <td>@booking.ServiceType</td>
+                    <td>@booking.Date.ToShortDateString()</td>
+                    <td>@booking.Progress</td>
+                    <td>@booking.PaymentStatus</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

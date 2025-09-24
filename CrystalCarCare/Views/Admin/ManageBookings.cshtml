@@ -1,0 +1,57 @@
+﻿@model IEnumerable<CrystalCarCare.Models.Booking>
+
+@{
+    ViewBag.Title = "Manage Bookings";
+}
+
+<h2>Manage Bookings</h2>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>UserId</th>
+            <th>Service</th>
+            <th>Date</th>
+            <th>Progress</th>
+            <th>Payment</th>
+            <th>Update</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var booking in Model)
+        {
+            <tr>
+                @using (Html.BeginForm("UpdateBooking", "Admin", FormMethod.Post))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.Hidden("bookingId", booking.BookingId)
+
+                    <td>@booking.BookingId</td>
+                    <td>@booking.UserId</td>
+                    <td>@booking.ServiceType</td>
+                    <td>@booking.Date.ToShortDateString()</td>
+                    <td>
+                        <select name="progress" class="form-control">
+                            <option @(booking.Progress == "Pending" ? "selected" : "")>Pending</option>
+                            <option @(booking.Progress == "Accepted" ? "selected" : "")>Accepted</option>
+                            <option @(booking.Progress == "Completed" ? "selected" : "")>Completed</option>
+                        </select>
+                    </td>
+                    <td>
+                        <select name="paymentStatus" class="form-control">
+                            <option @(booking.PaymentStatus == "Not Paid" ? "selected" : "")>Not Paid</option>
+                            <option @(booking.PaymentStatus == "Paid" ? "selected" : "")>Paid</option>
+                            <option @(booking.PaymentStatus == "Online Paid" ? "selected" : "")>Online Paid</option>
+                        </select>
+                    </td>
+                    <td>
+                        <button type="submit" class="btn btn-sm btn-success">Save</button>
+                    </td>
+                    
+                }
+            </tr>
+        }
+    </tbody>
+</table>

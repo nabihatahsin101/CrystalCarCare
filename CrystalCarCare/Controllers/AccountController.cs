@@ -79,16 +79,20 @@ namespace CrystalCarCare.Controllers
         {
             if (ModelState.IsValid)
             {
-                booking.UserId = User.Identity.GetUserId();
-                db.Bookings.Add(booking);
-                db.SaveChanges();
+                var user = db.Users.FirstOrDefault(u => u.Email == User.Identity.Name);
+                if (user != null)
+                {
+                    booking.UserId = user.UserId.ToString();  // or make Booking.UserId an int
+                    db.Bookings.Add(booking);
+                    db.SaveChanges();
+                }
                 TempData["Message"] = "Your booking has been successfully submitted!";
                 return RedirectToAction("BookingConfirmation", new { bookingId = booking.BookingId });
-
             }
 
             return View(booking);
         }
+
 
         public ActionResult BookingConfirmation(int bookingId)
         {
@@ -137,6 +141,17 @@ namespace CrystalCarCare.Controllers
 
                 return File(ms.ToArray(), "application/pdf", "BookingConfirmation.pdf");
             }
+        }
+
+        [Authorize]
+        public ActionResult MyOrders()
+        {
+            var user = db.Users.FirstOrDefault(u => u.Email == User.Identity.Name);
+            var bookings = db.Bookings
+                             .Where(b => b.UserId == user.UserId.ToString())
+                             .ToList();
+
+            return View(bookings);
         }
 
 
