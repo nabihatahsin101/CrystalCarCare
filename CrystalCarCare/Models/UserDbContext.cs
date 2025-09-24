@@ -8,9 +8,13 @@ namespace CrystalCarCare.Models
     public class UserDbContext : DbContext
     {
         public UserDbContext() : base("name=UserDbContext") { }
-      
+
         public DbSet<UserRegister> Users { get; set; }
 
         public DbSet<Booking> Bookings { get; set; }
+
+        public DbSet<Admin> Admins { get; set; }
+
     }
+    
 }

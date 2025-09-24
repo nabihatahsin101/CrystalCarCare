@@ -1,4 +1,5 @@
-﻿using System.Web.Mvc;
+﻿using System.Linq;
+using System.Web.Mvc;
 using CrystalCarCare.Models;
 
 namespace CrystalCarCare.Controllers
@@ -16,22 +17,31 @@ namespace CrystalCarCare.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Login(AdminLoginViewModel model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                // Hardcoded credentials for now
-                if (model.Username.Trim() == "admin" && model.Password.Trim() == "admin123")
+                ViewBag.Error = "Please fill in all fields.";
+                return View(model);
+            }
+
+            using (var db = new UserDbContext())
+            {
+                var admin = db.Admins
+                              .FirstOrDefault(a => a.Username == model.Username && a.Password == model.Password);
+
+                if (admin != null)
                 {
-                    // Store admin login in session
+                    // ✅ Store both username and flag
+                    Session["AdminUsername"] = admin.Username;
                     Session["IsAdmin"] = true;
-                    Session["AdminName"] = model.Username;
 
                     return RedirectToAction("Dashboard");
                 }
-
-                ViewBag.Error = "Invalid username or password!";
+                else
+                {
+                    ViewBag.Error = "Invalid username or password.";
+                    return View(model);
+                }
             }
-
-            return View(model);
         }
 
         // GET: Admin/Dashboard
@@ -46,8 +56,7 @@ namespace CrystalCarCare.Controllers
         // GET: Admin/Logout
         public ActionResult Logout()
         {
-            Session["IsAdmin"] = null;
-            Session["AdminName"] = null;
+            Session.Clear(); // ✅ clears both AdminUsername and IsAdmin
             return RedirectToAction("Login");
         }
     }
