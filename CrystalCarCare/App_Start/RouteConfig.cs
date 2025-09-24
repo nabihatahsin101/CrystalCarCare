@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,23 +9,30 @@ namespace CrystalCarCare
 {
     public class RouteConfig
     {
-
         public static void RegisterRoutes(RouteCollection routes)
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+            // Profile route
             routes.MapRoute(
                 name: "Profile",
                 url: "Profile/{action}/{id}",
-                defaults: new { controller = "UserProfile", action = "Index", id = UrlParameter.Optional } // FIXED
+                defaults: new { controller = "UserProfile", action = "Index", id = UrlParameter.Optional }
             );
 
+            // Chatbot route
+            routes.MapRoute(
+                name: "Chatbot",
+                url: "Chatbot/{action}/{id}",
+                defaults: new { controller = "Chatbot", action = "Ask", id = UrlParameter.Optional }
+            );
+
+            // Default route
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
             );
-
         }
     }
 }
