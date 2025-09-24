@@ -9,7 +9,6 @@ namespace CrystalCarCare.Controllers
     [Authorize]
     public class CarRentController : Controller
     {
-        // Sample data (replace with database in production)
         private static List<Car> cars = new List<Car>
         {
             new Car { Id = 1, Make = "Toyota", Model = "Camry", Year = 2022, RentalPricePerDay = 50.00m, ImageUrl = "~/Content/img/toyota_camry.jpg", IsAvailable = true },
@@ -20,34 +19,43 @@ namespace CrystalCarCare.Controllers
 
         public ActionResult Index(string searchString = "", string sortOrder = "")
         {
-            ViewBag.SearchString = searchString;
-            ViewBag.PriceSortParm = sortOrder == "Price" ? "price_desc" : "Price";
-            ViewBag.YearSortParm = sortOrder == "Year" ? "year_desc" : "Year";
+            ViewBag.SearchString = searchString ?? "";
+            ViewBag.CurrentSort = sortOrder ?? "AlphaAsc";
 
             var filteredCars = cars.AsQueryable();
 
+            // Search
             if (!string.IsNullOrEmpty(searchString))
             {
-                filteredCars = filteredCars.Where(c => c.Make.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) >= 0 ||
-                                                      c.Model.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) >= 0);
+                filteredCars = filteredCars.Where(c =>
+                    c.Make.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                    c.Model.IndexOf(searchString, StringComparison.OrdinalIgnoreCase) >= 0
+                );
             }
 
+            // Sorting
             switch (sortOrder)
             {
-                case "Price":
+                case "PriceAsc":
                     filteredCars = filteredCars.OrderBy(c => c.RentalPricePerDay);
                     break;
-                case "price_desc":
+                case "PriceDesc":
                     filteredCars = filteredCars.OrderByDescending(c => c.RentalPricePerDay);
                     break;
-                case "Year":
+                case "AlphaAsc":
+                    filteredCars = filteredCars.OrderBy(c => c.Make).ThenBy(c => c.Model);
+                    break;
+                case "AlphaDesc":
+                    filteredCars = filteredCars.OrderByDescending(c => c.Make).ThenByDescending(c => c.Model);
+                    break;
+                case "YearAsc":
                     filteredCars = filteredCars.OrderBy(c => c.Year);
                     break;
-                case "year_desc":
+                case "YearDesc":
                     filteredCars = filteredCars.OrderByDescending(c => c.Year);
                     break;
                 default:
-                    filteredCars = filteredCars.OrderBy(c => c.Make);
+                    filteredCars = filteredCars.OrderBy(c => c.Make).ThenBy(c => c.Model);
                     break;
             }
 
@@ -58,10 +66,21 @@ namespace CrystalCarCare.Controllers
         {
             var car = cars.FirstOrDefault(c => c.Id == id);
             if (car == null || !car.IsAvailable)
-            {
-                return HttpNotFound("Car not found or not available for rent.");
-            }
+                return HttpNotFound("Car not found or not available.");
+
             return View(car);
+        }
+
+        [HttpPost]
+        public ActionResult Book(int carId, int rentalDays, DateTime startDate)
+        {
+            var car = cars.FirstOrDefault(c => c.Id == carId);
+            if (car == null || !car.IsAvailable)
+                return HttpNotFound("Car not found or not available.");
+
+            car.IsAvailable = false; // mark as booked for demo
+            TempData["Success"] = $"Booked {car.Make} {car.Model} for {rentalDays} day(s) starting {startDate:d}.";
+            return RedirectToAction("Index");
         }
     }
 }
