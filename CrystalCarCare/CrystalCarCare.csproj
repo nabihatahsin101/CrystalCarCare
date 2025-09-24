@@ -195,6 +195,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Admin.cs" />
     <Compile Include="Models\AdminLoginViewModel.cs" />
     <Compile Include="Models\Booking.cs" />
     <Compile Include="Models\BookingConfirmationViewModel.cs" />
