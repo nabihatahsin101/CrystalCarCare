@@ -1,0 +1,41 @@
+﻿@model IEnumerable<CrystalCarCare.Models.UserRegister>
+@{
+    ViewBag.Title = "Manage Users";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-5">
+    <div class="glass-card p-4 shadow-lg">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="text-warning">User Management</h2>
+        </div>
+
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead class="table-dark">
+                    <tr>
+                        <th>User Id</th>
+                        <th>User Name</th>
+                        <th>Email</th>
+                        <th>Password</th>
+                        <th class="text-center">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model)
+                    {
+                        <tr class="glass-card p-2 mb-2">
+                            <td>@user.UserId</td>
+                            <td>@user.UserName</td>
+                            <td>@user.Email</td>
+                            <td><span class="text-muted">••••••</span></td>
+                            <td class="text-center">
+                                @Html.ActionLink("Delete", "DeleteUser", new { id = user.UserId }, new { @class = "btn btn-sm btn-danger px-3" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

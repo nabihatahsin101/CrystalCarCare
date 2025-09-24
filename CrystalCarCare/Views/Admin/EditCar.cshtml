@@ -1,0 +1,43 @@
+﻿@model CrystalCarCare.Models.Car
+@{
+    ViewBag.Title = "Edit Car";
+}
+
+<h2>Edit Car</h2>
+
+@using (Html.BeginForm("EditCar", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.Id)
+
+    <div class="form-group mb-2">
+        @Html.LabelFor(m => m.Make)
+        @Html.TextBoxFor(m => m.Make, new { @class = "form-control" })
+    </div>
+    <div class="form-group mb-2">
+        @Html.LabelFor(m => m.Model)
+        @Html.TextBoxFor(m => m.Model, new { @class = "form-control" })
+    </div>
+    <div class="form-group mb-2">
+        @Html.LabelFor(m => m.Year)
+        @Html.TextBoxFor(m => m.Year, new { @class = "form-control", type = "number" })
+    </div>
+    <div class="form-group mb-2">
+        @Html.LabelFor(m => m.RentalPricePerDay)
+        @Html.TextBoxFor(m => m.RentalPricePerDay, new { @class = "form-control", type = "number", step = "0.01" })
+    </div>
+    <div class="form-group mb-2">
+        @Html.Label("Car Image")
+        <input type="file" name="ImageFile" class="form-control" />
+        @if (!string.IsNullOrEmpty(Model.ImageUrl))
+        {
+            <img src="@Url.Content(Model.ImageUrl)" width="150" class="mt-2" />
+        }
+    </div>
+    <div class="form-check mb-2">
+        @Html.CheckBoxFor(m => m.IsAvailable, new { @class = "form-check-input" })
+        @Html.LabelFor(m => m.IsAvailable, new { @class = "form-check-label" })
+    </div>
+    <button type="submit" class="btn btn-primary">Update Car</button>
+    @Html.ActionLink("Back", "ListCars", null, new { @class = "btn btn-secondary" })
+}

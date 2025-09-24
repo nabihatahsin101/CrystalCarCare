@@ -18,3 +18,223 @@ select,
 textarea {
     max-width: 280px;
 }
+/* ---------------- Admin User Management Styling ---------------- */
+.admin-container {
+    color: var(--light);
+}
+
+/* glass-card wrapper (re-uses homepage glass styles) */
+.table-wrap {
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.06);
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+    backdrop-filter: blur(8px);
+}
+
+/* table */
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    .user-table thead {
+        background: linear-gradient(90deg, rgba(0,48,135,0.95), rgba(0,32,91,0.95));
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        font-weight: 700;
+    }
+
+        .user-table thead th {
+            padding: 12px 16px;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+
+    .user-table tbody td {
+        padding: 12px 16px;
+        vertical-align: middle;
+        border-bottom: 1px solid rgba(255,255,255,0.03);
+        color: #eaeaea;
+    }
+
+    .user-table tbody tr:hover {
+        transform: translateY(-4px);
+        background: rgba(255,215,0,0.03);
+        box-shadow: 0 8px 20px rgba(255,215,0,0.03) inset;
+    }
+
+/* action buttons */
+.action-delete {
+    background: transparent;
+    border: 1px solid rgba(255, 77, 77, 0.95);
+    color: #ffcccc;
+    padding: 6px 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all .25s ease;
+}
+
+    .action-delete:hover {
+        background: rgba(255, 77, 77, 0.95);
+        color: white;
+        transform: scale(1.05);
+        box-shadow: 0 8px 30px rgba(255, 77, 77, 0.15);
+    }
+
+/* small responsive tweaks */
+@media (max-width: 768px) {
+    .user-table thead th {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .user-table tbody td {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .glass-card {
+        padding: 12px !important;
+    }
+}
+/* Set padding to keep content from hitting the edges */
+.body-content {
+    margin-top: 15px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+/* Override the default bootstrap behavior where horizontal description lists 
+   will truncate terms that are too long to fit in the left column 
+*/
+.dl-horizontal dt {
+    white-space: normal;
+}
+
+/* Set width on the form input elements since they're 100% wide by default */
+input,
+select,
+textarea {
+    max-width: 280px;
+}
+/* ---------------- Admin User Management Styling ---------------- */
+.admin-container {
+    color: var(--light);
+}
+
+/* glass-card wrapper (re-uses homepage glass styles) */
+.table-wrap {
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.06);
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+    box-shadow: 0 12px 30px rgba(0,0,0,0.6);
+    backdrop-filter: blur(8px);
+}
+
+/* table */
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+    .user-table thead {
+        background: linear-gradient(90deg, rgba(0,48,135,0.95), rgba(0,32,91,0.95));
+        color: var(--accent);
+        text-transform: uppercase;
+        letter-spacing: 0.8px;
+        font-weight: 700;
+    }
+
+        .user-table thead th {
+            padding: 12px 16px;
+            border-bottom: 1px solid rgba(255,255,255,0.04);
+        }
+
+    .user-table tbody td {
+        padding: 12px 16px;
+        vertical-align: middle;
+        border-bottom: 1px solid rgba(255,255,255,0.03);
+        color: #eaeaea;
+    }
+
+    .user-table tbody tr:hover {
+        transform: translateY(-4px);
+        background: rgba(255,215,0,0.03);
+        box-shadow: 0 8px 20px rgba(255,215,0,0.03) inset;
+    }
+
+/* action buttons */
+.action-delete {
+    background: transparent;
+    border: 1px solid rgba(255, 77, 77, 0.95);
+    color: #ffcccc;
+    padding: 6px 10px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all .25s ease;
+}
+
+    .action-delete:hover {
+        background: rgba(255, 77, 77, 0.95);
+        color: white;
+        transform: scale(1.05);
+        box-shadow: 0 8px 30px rgba(255, 77, 77, 0.15);
+    }
+
+/* small responsive tweaks */
+@media (max-width: 768px) {
+    .user-table thead th {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .user-table tbody td {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    .glass-card {
+        padding: 12px !important;
+    }
+}
+/* User Management table styled like homepage */
+.user-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: var(--light);
+}
+
+    .user-table thead {
+        background: linear-gradient(90deg, rgba(0,48,135,0.95), rgba(0,32,91,0.95));
+        color: var(--accent);
+        text-transform: uppercase;
+        font-weight: 600;
+    }
+
+    .user-table th, .user-table td {
+        padding: 12px 16px;
+        border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .user-table tbody tr:hover {
+        background: rgba(255,215,0,0.05);
+        transition: background 0.3s ease;
+    }
+
+/* Delete button */
+.action-delete {
+    background: transparent;
+    border: 1px solid rgba(255, 77, 77, 0.95);
+    color: #ffaaaa;
+    padding: 6px 12px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all .25s ease;
+}
+
+    .action-delete:hover {
+        background: rgba(255, 77, 77, 0.95);
+        color: #fff;
+        transform: scale(1.05);
+    }

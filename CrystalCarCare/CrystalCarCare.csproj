@@ -193,9 +193,16 @@
     <Compile Include="Migrations\202509222028058_AddBookingTable.Designer.cs">
       <DependentUpon>202509222028058_AddBookingTable.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202509241700410_AddBookingStatusAndPayment.cs" />
-    <Compile Include="Migrations\202509241700410_AddBookingStatusAndPayment.Designer.cs">
-      <DependentUpon>202509241700410_AddBookingStatusAndPayment.cs</DependentUpon>
+<Compile Include="Migrations\202509241700410_AddBookingStatusAndPayment.cs" />
+<Compile Include="Migrations\202509241700410_AddBookingStatusAndPayment.Designer.cs">
+  <DependentUpon>202509241700410_AddBookingStatusAndPayment.cs</DependentUpon>
+</Compile>
+
+<Compile Include="Migrations\202509241446017_AddCarsTable.cs" />
+<Compile Include="Migrations\202509241446017_AddCarsTable.Designer.cs">
+  <DependentUpon>202509241446017_AddCarsTable.cs</DependentUpon>
+</Compile>
+
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -316,8 +323,17 @@
     <Content Include="Views\Admin.cshtml" />
     <Content Include="Views\Admin\Login.cshtml" />
     <Content Include="Views\Admin\Dashboard.cshtml" />
+
     <Content Include="Views\Account\MyOrders.cshtml" />
     <Content Include="Views\Admin\ManageBookings.cshtml" />
+
+    <Content Include="Views\Admin\Users.cshtml" />
+    <Content Include="Views\Admin\DeleteUser.cshtml" />
+    <Content Include="Views\Admin\ListCars.cshtml" />
+    <Content Include="Views\Admin\AddCar.cshtml" />
+    <Content Include="Views\Admin\EditCar.cshtml" />
+    <Content Include="Views\Admin\DeleteCar.cshtml" />
+
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -356,9 +372,14 @@
     <EmbeddedResource Include="Migrations\202509222028058_AddBookingTable.resx">
       <DependentUpon>202509222028058_AddBookingTable.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202509241700410_AddBookingStatusAndPayment.resx">
-      <DependentUpon>202509241700410_AddBookingStatusAndPayment.cs</DependentUpon>
-    </EmbeddedResource>
+<EmbeddedResource Include="Migrations\202509241700410_AddBookingStatusAndPayment.resx">
+  <DependentUpon>202509241700410_AddBookingStatusAndPayment.cs</DependentUpon>
+</EmbeddedResource>
+
+<EmbeddedResource Include="Migrations\202509241446017_AddCarsTable.resx">
+  <DependentUpon>202509241446017_AddCarsTable.cs</DependentUpon>
+</EmbeddedResource>
+
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
