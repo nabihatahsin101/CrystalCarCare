@@ -3,26 +3,125 @@
     ViewBag.Title = "Admin Login";
 }
 
+<style>
+    body {
+        background-color: #111; /* dark background */
+        font-family: 'Roboto', sans-serif;
+        margin: 0;
+        padding: 0;
+        color: #FFD700;
+    }
+
+    h2 {
+        text-align: center;
+        color: #FFD700;
+        margin-top: 50px; /* reduced from 50px to 20px */
+        margin-bottom: 60px; /* optional: add bottom margin */
+        text-shadow: 0 0 10px rgba(255, 215, 0, 0.7);
+    }
+
+    /* Center login container */
+    .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start; /* align top of box closer to heading */
+        min-height: calc(100vh - 20px); /* adjust if needed */
+        padding-top: 0px; /* remove extra top padding */
+    }
+
+    /* Login box */
+    .login-box {
+        background-color: #1a1a1a;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 8px 20px rgba(255, 215, 0, 0.3);
+        width: 360px;
+        text-align: center;
+        border: 1px solid #FFD700;
+        transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+        .login-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(255, 215, 0, 0.5);
+        }
+
+        .login-box label {
+            display: block;
+            font-weight: bold;
+            color: #FFD700;
+            margin-bottom: 5px;
+            text-align: left;
+        }
+
+        .login-box .form-control {
+            width: 100%;
+            margin-bottom: 15px;
+            border-radius: 6px;
+            border: 1px solid #444;
+            outline: none;
+            background-color: #111;
+            color: #FFD700;
+        }
+
+            .login-box .form-control:focus {
+                border-color: #FFD700;
+                box-shadow: 0 0 10px rgba(255, 215, 0, 0.4);
+            }
+
+        .login-box button {
+            background-color: #FFD700;
+            color: #111;
+            font-weight: bold;
+            padding: 10px;
+            width: 100%;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s all;
+        }
+
+            .login-box button:hover {
+                background-color: #FFA500;
+                transform: scale(1.05);
+                box-shadow: 0 8px 20px rgba(255, 215, 0, 0.4);
+            }
+
+    .alert-danger {
+        background-color: rgba(220,53,69,0.2);
+        border: 1px solid rgba(220,53,69,0.5);
+        color: #f8d7da;
+        border-radius: 8px;
+        padding: 0.75rem 1rem;
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+</style>
+
 <h2>Admin Login</h2>
 
-@if (ViewBag.Error != null)
-{
-    <div class="alert alert-danger">@ViewBag.Error</div>
-}
+<div class="login-container">
+    <div class="login-box">
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger">@ViewBag.Error</div>
+        }
 
-@using (Html.BeginForm("Login", "Admin", FormMethod.Post, new { @class = "form" }))
-{
-    @Html.AntiForgeryToken()
+        @using (Html.BeginForm("Login", "Admin", FormMethod.Post, new { @class = "form" }))
+        {
+            @Html.AntiForgeryToken()
 
-    <div class="form-group mb-3">
-        @Html.LabelFor(m => m.Username)
-        @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
+            <div class="form-group mb-3">
+                @Html.LabelFor(m => m.Username)
+                @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
+            </div>
+
+            <div class="form-group mb-3">
+                @Html.LabelFor(m => m.Password)
+                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+            </div>
+
+            <button type="submit">Login</button>
+        }
     </div>
-
-    <div class="form-group mb-3">
-        @Html.LabelFor(m => m.Password)
-        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-    </div>
-
-    <button type="submit" class="btn btn-warning">Login</button>
-}
+</div>
