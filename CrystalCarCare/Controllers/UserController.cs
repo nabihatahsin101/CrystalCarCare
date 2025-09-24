@@ -1,6 +1,6 @@
 ﻿using System.Web.Mvc;
-using CrystalCarCare.Models;   // ✅ Add this
-using Microsoft.AspNet.Identity; // ✅ Add this if using Identity
+using CrystalCarCare.Models;
+using Microsoft.AspNet.Identity;
 
 namespace CrystalCarCare.Controllers
 {
@@ -24,22 +24,13 @@ namespace CrystalCarCare.Controllers
                 // If using Identity
                 booking.UserId = User.Identity.GetUserId();
 
-                // If NOT using Identity, replace with:
-                // booking.UserId = User.Identity.Name;
-
                 db.Bookings.Add(booking);
                 db.SaveChanges();
 
-                TempData["Message"] = "Your booking has been successfully submitted!";
-                return RedirectToAction("BookingConfirmation");
+                return Json(new { status = "Saved" }); // Only returns "Saved"
             }
 
-            return View(booking);
-        }
-
-        public ActionResult BookingConfirmation()
-        {
-            return View();
+            return Json(new { status = "Failed" });
         }
     }
 }

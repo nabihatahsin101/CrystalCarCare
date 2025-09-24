@@ -1,9 +1,8 @@
-﻿
-
-@{
+﻿@{
     ViewBag.Title = "Booking";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
+
 <div class="container mt-5">
     <div class="row">
         <div class="col-lg-8 mx-auto">
@@ -12,22 +11,24 @@
                     <h2 class="mb-0">Book Your Service</h2>
                 </div>
                 <div class="card-body">
-                    <form id="bookingForm" method="post" action="@Url.Action("Booking", "User")">
+                    <form id="bookingForm" method="post">
+                        @Html.AntiForgeryToken()
+
                         <div class="form-group mb-3">
                             <label for="serviceType" class="form-label">Service Type</label>
                             <select class="form-select" id="serviceType" name="serviceType" required>
                                 <option value="" disabled @(ViewBag.ServiceName == null ? "selected" : "")>Select a service</option>
-                                <option value="Premium Wash" @(ViewBag.ServiceName == "Premium Wash" ? "selected" : "")>Premium Wash</option>
-                                <option value="Oil Change" @(ViewBag.ServiceName == "Oil Change" ? "selected" : "")>Oil Change</option>
-                                <option value="Brake Service" @(ViewBag.ServiceName == "Brake Service" ? "selected" : "")>Brake Service</option>
-                                <option value="Tire Change" @(ViewBag.ServiceName == "Tire Change" ? "selected" : "")>Tire Change</option>
-                                <option value="Battery Check" @(ViewBag.ServiceName == "Battery Check" ? "selected" : "")>Battery Check</option>
-                                <option value="Engine Diagnostics" @(ViewBag.ServiceName == "Engine Diagnostics" ? "selected" : "")>Engine Diagnostics</option>
-                                <option value="Air Filter Replacement" @(ViewBag.ServiceName == "Air Filter Replacement" ? "selected" : "")>Air Filter Replacement</option>
-                                <option value="Wheel Alignment" @(ViewBag.ServiceName == "Wheel Alignment" ? "selected" : "")>Wheel Alignment</option>
+                                <option value="Premium Wash">Premium Wash</option>
+                                <option value="Oil Change">Oil Change</option>
+                                <option value="Brake Service">Brake Service</option>
+                                <option value="Tire Change">Tire Change</option>
+                                <option value="Battery Check">Battery Check</option>
+                                <option value="Engine Diagnostics">Engine Diagnostics</option>
+                                <option value="Air Filter Replacement">Air Filter Replacement</option>
+                                <option value="Wheel Alignment">Wheel Alignment</option>
                             </select>
-
                         </div>
+
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="date" class="form-label">Preferred Date</label>
@@ -49,6 +50,7 @@
                                 </select>
                             </div>
                         </div>
+
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="vehicleMake" class="form-label">Vehicle Make</label>
@@ -59,6 +61,7 @@
                                 <input type="text" class="form-control" id="vehicleModel" name="vehicleModel" placeholder="e.g., Camry" required>
                             </div>
                         </div>
+
                         <div class="row mb-3">
                             <div class="col-md-6">
                                 <label for="vehicleYear" class="form-label">Vehicle Year</label>
@@ -69,14 +72,19 @@
                                 <input type="text" class="form-control" id="licensePlate" name="licensePlate" placeholder="e.g., ABC123" required>
                             </div>
                         </div>
+
                         <div class="mb-3">
                             <label for="specialRequests" class="form-label">Special Requests (Optional)</label>
                             <textarea class="form-control" id="specialRequests" name="specialRequests" rows="3" placeholder="Any special requirements or notes..."></textarea>
                         </div>
+
                         <div class="d-grid gap-2 d-md-flex justify-content-md-end">
                             <button type="button" class="btn btn-outline-secondary me-md-2" onclick="resetForm()">Reset</button>
                             <button type="submit" class="btn btn-primary">Submit Booking</button>
                         </div>
+
+                        <!-- Confirmation message -->
+                        <div id="saveMessage" class="mt-3"></div>
                     </form>
                 </div>
             </div>
@@ -85,45 +93,37 @@
 </div>
 
 <style>
-
     body {
-        background-color: #111; /* dark background like hero */
-        color: #FFD700; /* optional: text color for headings */
-    }
-
-    .container {
-        padding-top:0 px;
-        padding-bottom:0 px;
+        background-color: #111;
+        color: #FFD700;
     }
 
     .card {
-        background-color: #1a1a1a; /* slightly lighter dark for card */
-        color: #fff; /* form text color */
-        margin-bottom: 350px;
+        background-color: #1a1a1a;
+        color: #fff;
+        margin-bottom: 50px;
     }
 
     .card-header {
-        background-color: #1a1a1a !important; /* black background */
-        color: #FFD700 !important; /* gold text */
-        border-bottom: 2px solid #FFD700; /* optional gold underline */
+        background-color: #1a1a1a !important;
+        color: #FFD700 !important;
+        border-bottom: 2px solid #FFD700;
     }
 
         .card-header h2 {
-            color: #FFD700; /* gold text */
             font-weight: 700;
-            text-shadow: 1px 1px 4px rgba(0,0,0,0.7); /* optional: subtle shadow for depth */
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
         }
 
-
     .form-control, .form-select, textarea {
-        background-color: #2a2a2a; /* dark input fields */
+        background-color: #2a2a2a;
         color: #fff;
-        border: 1px solid #444; /* subtle border */
+        border: 1px solid #444;
     }
 
         .form-control:focus, .form-select:focus, textarea:focus {
             border-color: #FFD700;
-            box-shadow: 0 0 0 0.25rem rgba(255, 215, 0, 0.25);
+            box-shadow: 0 0 0 0.25rem rgba(255,215,0,0.25);
         }
 
     .btn-primary {
@@ -133,8 +133,7 @@
     }
 
         .btn-primary:hover {
-            background-color: #FFA500; /* darker gold on hover */
-            color: #111;
+            background-color: #FFA500;
         }
 
     .btn-outline-secondary {
@@ -146,24 +145,69 @@
             background-color: #FFD700;
             color: #111;
         }
+
+    .confirmation-card {
+        background-color: #1a1a1a;
+        color: #FFD700;
+        padding: 30px 25px;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+        max-width: 500px;
+        margin: 20px auto 50px auto;
+    }
+
+        .confirmation-card h1 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.7);
+        }
+
+        .confirmation-card p {
+            font-size: 1rem;
+            color: #fff;
+            margin-bottom: 10px;
+        }
 </style>
 
 @section Scripts {
     <script>
-    document.getElementById('date').min = new Date().toISOString().split('T')[0];
+document.getElementById('date').min = new Date().toISOString().split('T')[0];
 
-    function resetForm() {
-        document.getElementById('bookingForm').reset();
-    }
+function resetForm() {
+    document.getElementById('bookingForm').reset();
+    document.getElementById('saveMessage').innerHTML = '';
+}
 
-    // Check if user is logged in
-    document.getElementById('bookingForm').addEventListener('submit', function(e) {
-        var isAuthenticated = '@Request.IsAuthenticated'.toLowerCase() === 'true';
-        if (!isAuthenticated) {
-            e.preventDefault(); // prevent form submission
-            alert('Please log in first to submit a booking.');
-            window.location.href = '@Url.Action("Login", "Account")'; // redirect to login
+// AJAX submit
+document.getElementById('bookingForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const formData = new FormData(this);
+
+    fetch('@Url.Action("Booking", "User")', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data.status === "Saved") {
+            const confirmationHTML = `
+                <div class="confirmation-card">
+                    <h1>Booking Confirmed!</h1>
+                    <p><strong>Service:</strong> ${formData.get('serviceType')}</p>
+                    <p><strong>Date:</strong> ${formData.get('date')}</p>
+                    <p><strong>Time:</strong> ${formData.get('time')}</p>
+                    <p><strong>Vehicle:</strong> ${formData.get('vehicleYear')} ${formData.get('vehicleMake')} ${formData.get('vehicleModel')}</p>
+                    <p><strong>License Plate:</strong> ${formData.get('licensePlate')}</p>
+                    <p><strong>Special Requests:</strong> ${formData.get('specialRequests') || 'None'}</p>
+                </div>
+            `;
+            document.getElementById('saveMessage').innerHTML = confirmationHTML;
+            document.getElementById('bookingForm').reset();
         }
-    });
+    })
+    .catch(error => console.error(error));
+});
     </script>
 }
