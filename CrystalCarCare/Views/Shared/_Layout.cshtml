@@ -276,6 +276,7 @@
                         <li class="nav-item">
                             @Html.ActionLink("Dashboard", "Dashboard", "Admin", null, new { @class = "nav-link" })
                         </li>
+                        <li>@Html.ActionLink("Manage Bookings", "ManageBookings", "Admin", null, new { @class = "nav-link"  })</li>
                         <li class="nav-item">
                             @Html.ActionLink("Manage user", "Users", "Admin", null, new { @class = "nav-link" })
                         </li>
@@ -298,8 +299,9 @@
                             @Html.ActionLink("Rent", "Index", "CarRent", null, new { @class = "nav-link" })
                         </li>
                         <li class="nav-item">
-                            @Html.ActionLink("Booking Status", "BookingStatus", "User", null, new { @class = "nav-link" })
+                              @Html.ActionLink("My Orders", "MyOrders", "Account", null, new { @class = "nav-link" })
                         </li>
+
                         <li class="nav-item">
                             @Html.ActionLink("Profile", "Index", "UserProfile", null, new { @class = "nav-link" })
                         </li>
