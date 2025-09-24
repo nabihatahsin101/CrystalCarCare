@@ -19,6 +19,12 @@ namespace CrystalCarCare
                 url: "Profile/{action}/{id}",
                 defaults: new { controller = "UserProfile", action = "Index", id = UrlParameter.Optional } // FIXED
             );
+            routes.MapRoute(
+    name: "Chatbot",
+    url: "Chatbot/{action}/{id}",
+    defaults: new { controller = "Chatbot", action = "Ask", id = UrlParameter.Optional }
+);
+
 
             routes.MapRoute(
                 name: "Default",
