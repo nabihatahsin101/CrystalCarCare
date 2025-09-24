@@ -1,0 +1,28 @@
+@model CrystalCarCare.Models.AdminLoginViewModel
+@{
+    ViewBag.Title = "Admin Login";
+}
+
+<h2>Admin Login</h2>
+
+@if (ViewBag.Error != null)
+{
+    <div class="alert alert-danger">@ViewBag.Error</div>
+}
+
+@using (Html.BeginForm("Login", "Admin", FormMethod.Post, new { @class = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group mb-3">
+        @Html.LabelFor(m => m.Username)
+        @Html.TextBoxFor(m => m.Username, new { @class = "form-control" })
+    </div>
+
+    <div class="form-group mb-3">
+        @Html.LabelFor(m => m.Password)
+        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+    </div>
+
+    <button type="submit" class="btn btn-warning">Login</button>
+}
