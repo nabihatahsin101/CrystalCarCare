@@ -14,7 +14,8 @@ namespace CrystalCarCare.Models
         public DbSet<Booking> Bookings { get; set; }
 
         public DbSet<Admin> Admins { get; set; }
+        public DbSet<Car> Cars { get; set; }
 
     }
-    
+
 }
