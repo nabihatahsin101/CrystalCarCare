@@ -2,15 +2,15 @@
 
 namespace CrystalCarCare.Models
 {
-    public class AdminLoginViewModel
+    public class Admin
     {
+        [Key]
+        public int AdminId { get; set; }
+
         [Required]
-        [Display(Name = "Username")]
         public string Username { get; set; }
 
         [Required]
-        [DataType(DataType.Password)]
-        [Display(Name = "Password")]
         public string Password { get; set; }
     }
 }
